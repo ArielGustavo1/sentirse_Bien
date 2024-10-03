@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            button7 = new Button();
             button6 = new Button();
             button4 = new Button();
             button3 = new Button();
@@ -37,6 +38,8 @@
             btnOpciones = new Button();
             label1 = new Label();
             panel2 = new Panel();
+            textBox4 = new TextBox();
+            label9 = new Label();
             button5 = new Button();
             textBox3 = new TextBox();
             textBox2 = new TextBox();
@@ -68,6 +71,7 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(button7);
             panel1.Controls.Add(button6);
             panel1.Controls.Add(button4);
             panel1.Controls.Add(button3);
@@ -79,8 +83,19 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(10);
             panel1.Name = "panel1";
-            panel1.Size = new Size(400, 1114);
+            panel1.Size = new Size(400, 1173);
             panel1.TabIndex = 0;
+            // 
+            // button7
+            // 
+            button7.Location = new Point(109, 510);
+            button7.Name = "button7";
+            button7.Size = new Size(150, 46);
+            button7.TabIndex = 11;
+            button7.Text = "Listar Todo";
+            button7.UseVisualStyleBackColor = true;
+            button7.Visible = false;
+            button7.Click += button7_Click;
             // 
             // button6
             // 
@@ -95,7 +110,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(109, 621);
+            button4.Location = new Point(109, 705);
             button4.Name = "button4";
             button4.Size = new Size(150, 46);
             button4.TabIndex = 5;
@@ -162,6 +177,8 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ControlLightLight;
+            panel2.Controls.Add(textBox4);
+            panel2.Controls.Add(label9);
             panel2.Controls.Add(button5);
             panel2.Controls.Add(textBox3);
             panel2.Controls.Add(textBox2);
@@ -177,22 +194,41 @@
             panel2.Location = new Point(400, 0);
             panel2.Margin = new Padding(10);
             panel2.Name = "panel2";
-            panel2.Size = new Size(2077, 1114);
+            panel2.Size = new Size(1755, 1173);
             panel2.TabIndex = 1;
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(614, 1098);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(423, 39);
+            textBox4.TabIndex = 11;
+            textBox4.Visible = false;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(294, 950);
+            label9.Name = "label9";
+            label9.Size = new Size(102, 32);
+            label9.TabIndex = 10;
+            label9.Text = "Servicio:";
+            label9.Visible = false;
             // 
             // button5
             // 
-            button5.Location = new Point(1140, 1021);
+            button5.Location = new Point(1520, 1091);
             button5.Name = "button5";
             button5.Size = new Size(150, 46);
             button5.TabIndex = 6;
             button5.Text = "Aceptar";
             button5.UseVisualStyleBackColor = true;
             button5.Visible = false;
+            button5.Click += button5_Click;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(614, 1025);
+            textBox3.Location = new Point(614, 1018);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(423, 39);
             textBox3.TabIndex = 9;
@@ -217,7 +253,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(294, 1025);
+            label8.Location = new Point(297, 1105);
             label8.Name = "label8";
             label8.Size = new Size(311, 32);
             label8.TabIndex = 6;
@@ -227,38 +263,38 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(294, 943);
+            label7.Location = new Point(294, 1025);
             label7.Name = "label7";
-            label7.Size = new Size(103, 32);
+            label7.Size = new Size(108, 32);
             label7.TabIndex = 5;
-            label7.Text = "Paciente";
+            label7.Text = "Paciente:";
             label7.Visible = false;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(294, 871);
+            label6.Location = new Point(294, 878);
             label6.Name = "label6";
-            label6.Size = new Size(132, 32);
+            label6.Size = new Size(137, 32);
             label6.TabIndex = 4;
-            label6.Text = "Profesional";
+            label6.Text = "Profesional:";
             label6.Visible = false;
             // 
             // listBox3
             // 
             listBox3.FormattingEnabled = true;
-            listBox3.Location = new Point(1469, 3);
+            listBox3.Location = new Point(1246, 3);
             listBox3.Name = "listBox3";
-            listBox3.Size = new Size(600, 836);
+            listBox3.Size = new Size(497, 836);
             listBox3.TabIndex = 3;
             listBox3.Visible = false;
             // 
             // listBox2
             // 
             listBox2.FormattingEnabled = true;
-            listBox2.Location = new Point(863, 3);
+            listBox2.Location = new Point(725, 3);
             listBox2.Name = "listBox2";
-            listBox2.Size = new Size(600, 836);
+            listBox2.Size = new Size(515, 836);
             listBox2.TabIndex = 2;
             listBox2.Visible = false;
             // 
@@ -267,7 +303,7 @@
             listBox1.FormattingEnabled = true;
             listBox1.Location = new Point(257, 3);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(600, 836);
+            listBox1.Size = new Size(462, 836);
             listBox1.TabIndex = 1;
             listBox1.Visible = false;
             // 
@@ -288,7 +324,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayoutPanel1.Size = new Size(254, 1114);
+            tableLayoutPanel1.Size = new Size(254, 1173);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // panel5
@@ -296,9 +332,9 @@
             panel5.BackColor = SystemColors.Highlight;
             panel5.Controls.Add(label5);
             panel5.Dock = DockStyle.Fill;
-            panel5.Location = new Point(3, 837);
+            panel5.Location = new Point(3, 882);
             panel5.Name = "panel5";
-            panel5.Size = new Size(248, 274);
+            panel5.Size = new Size(248, 288);
             panel5.TabIndex = 2;
             // 
             // label5
@@ -317,9 +353,9 @@
             panel6.BackColor = SystemColors.Info;
             panel6.Controls.Add(label3);
             panel6.Dock = DockStyle.Fill;
-            panel6.Location = new Point(3, 281);
+            panel6.Location = new Point(3, 296);
             panel6.Name = "panel6";
-            panel6.Size = new Size(248, 272);
+            panel6.Size = new Size(248, 287);
             panel6.TabIndex = 2;
             // 
             // label3
@@ -338,9 +374,9 @@
             panel4.BackColor = SystemColors.Desktop;
             panel4.Controls.Add(label4);
             panel4.Dock = DockStyle.Fill;
-            panel4.Location = new Point(3, 559);
+            panel4.Location = new Point(3, 589);
             panel4.Name = "panel4";
-            panel4.Size = new Size(248, 272);
+            panel4.Size = new Size(248, 287);
             panel4.TabIndex = 1;
             // 
             // label4
@@ -361,7 +397,7 @@
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(3, 3);
             panel3.Name = "panel3";
-            panel3.Size = new Size(248, 272);
+            panel3.Size = new Size(248, 287);
             panel3.TabIndex = 0;
             // 
             // label2
@@ -379,11 +415,11 @@
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(2477, 1114);
+            ClientSize = new Size(2155, 1173);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "Form1";
-            Text = "Form1";
+            Text = "Spa Sentirse Bien";
             Load += Form1_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -431,5 +467,8 @@
         private Label label6;
         private Button button6;
         private Button button5;
+        private TextBox textBox4;
+        private Label label9;
+        private Button button7;
     }
 }
