@@ -38,15 +38,9 @@
             btnOpciones = new Button();
             label1 = new Label();
             panel2 = new Panel();
-            textBox4 = new TextBox();
-            label9 = new Label();
             button5 = new Button();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
             textBox1 = new TextBox();
-            label8 = new Label();
-            label7 = new Label();
-            label6 = new Label();
+            lbl1 = new Label();
             listBox3 = new ListBox();
             listBox2 = new ListBox();
             listBox1 = new ListBox();
@@ -95,7 +89,7 @@
             button7.Text = "Listar Todo";
             button7.UseVisualStyleBackColor = true;
             button7.Visible = false;
-            button7.Click += button7_Click;
+            button7.Click += btnListarTodo;
             // 
             // button6
             // 
@@ -106,7 +100,7 @@
             button6.TabIndex = 10;
             button6.Text = "Salir";
             button6.UseVisualStyleBackColor = false;
-            button6.Click += button6_Click;
+            button6.Click += btnSalir;
             // 
             // button4
             // 
@@ -117,7 +111,7 @@
             button4.Text = "Agregar";
             button4.UseVisualStyleBackColor = true;
             button4.Visible = false;
-            button4.Click += button4_Click;
+            button4.Click += btnAgregar;
             // 
             // button3
             // 
@@ -128,7 +122,7 @@
             button3.Text = "Turno";
             button3.UseVisualStyleBackColor = true;
             button3.Visible = false;
-            button3.Click += button3_Click;
+            button3.Click += btnTurno;
             // 
             // button2
             // 
@@ -139,7 +133,7 @@
             button2.Text = "Paciente";
             button2.UseVisualStyleBackColor = true;
             button2.Visible = false;
-            button2.Click += button2_Click;
+            button2.Click += btnPaciente;
             // 
             // button1
             // 
@@ -150,7 +144,7 @@
             button1.Text = "Profesional";
             button1.UseVisualStyleBackColor = true;
             button1.Visible = false;
-            button1.Click += button1_Click;
+            button1.Click += btnProfesional;
             // 
             // btnOpciones
             // 
@@ -177,15 +171,9 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ControlLightLight;
-            panel2.Controls.Add(textBox4);
-            panel2.Controls.Add(label9);
             panel2.Controls.Add(button5);
-            panel2.Controls.Add(textBox3);
-            panel2.Controls.Add(textBox2);
             panel2.Controls.Add(textBox1);
-            panel2.Controls.Add(label8);
-            panel2.Controls.Add(label7);
-            panel2.Controls.Add(label6);
+            panel2.Controls.Add(lbl1);
             panel2.Controls.Add(listBox3);
             panel2.Controls.Add(listBox2);
             panel2.Controls.Add(listBox1);
@@ -196,24 +184,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1755, 1173);
             panel2.TabIndex = 1;
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(614, 1098);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(423, 39);
-            textBox4.TabIndex = 11;
-            textBox4.Visible = false;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(294, 950);
-            label9.Name = "label9";
-            label9.Size = new Size(102, 32);
-            label9.TabIndex = 10;
-            label9.Text = "Servicio:";
-            label9.Visible = false;
             // 
             // button5
             // 
@@ -226,22 +196,6 @@
             button5.Visible = false;
             button5.Click += button5_Click;
             // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(614, 1018);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(423, 39);
-            textBox3.TabIndex = 9;
-            textBox3.Visible = false;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(614, 943);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(423, 39);
-            textBox2.TabIndex = 8;
-            textBox2.Visible = false;
-            // 
             // textBox1
             // 
             textBox1.Location = new Point(614, 871);
@@ -250,42 +204,21 @@
             textBox1.TabIndex = 7;
             textBox1.Visible = false;
             // 
-            // label8
+            // lbl1
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(297, 1105);
-            label8.Name = "label8";
-            label8.Size = new Size(311, 32);
-            label8.TabIndex = 6;
-            label8.Text = "Turno: (aaaa,mm,dd,hh,mm)";
-            label8.Visible = false;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(294, 1025);
-            label7.Name = "label7";
-            label7.Size = new Size(108, 32);
-            label7.TabIndex = 5;
-            label7.Text = "Paciente:";
-            label7.Visible = false;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(294, 878);
-            label6.Name = "label6";
-            label6.Size = new Size(137, 32);
-            label6.TabIndex = 4;
-            label6.Text = "Profesional:";
-            label6.Visible = false;
+            lbl1.AutoSize = true;
+            lbl1.Location = new Point(294, 878);
+            lbl1.Name = "lbl1";
+            lbl1.Size = new Size(0, 32);
+            lbl1.TabIndex = 4;
+            lbl1.Visible = false;
             // 
             // listBox3
             // 
             listBox3.FormattingEnabled = true;
             listBox3.Location = new Point(1246, 3);
             listBox3.Name = "listBox3";
-            listBox3.Size = new Size(497, 836);
+            listBox3.Size = new Size(497, 772);
             listBox3.TabIndex = 3;
             listBox3.Visible = false;
             // 
@@ -294,7 +227,7 @@
             listBox2.FormattingEnabled = true;
             listBox2.Location = new Point(725, 3);
             listBox2.Name = "listBox2";
-            listBox2.Size = new Size(515, 836);
+            listBox2.Size = new Size(515, 772);
             listBox2.TabIndex = 2;
             listBox2.Visible = false;
             // 
@@ -303,7 +236,7 @@
             listBox1.FormattingEnabled = true;
             listBox1.Location = new Point(257, 3);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(462, 836);
+            listBox1.Size = new Size(462, 772);
             listBox1.TabIndex = 1;
             listBox1.Visible = false;
             // 
@@ -459,16 +392,10 @@
         private Button button1;
         private Button button4;
         private ListBox listBox3;
-        private TextBox textBox3;
-        private TextBox textBox2;
         private TextBox textBox1;
-        private Label label8;
-        private Label label7;
-        private Label label6;
+        private Label lbl1;
         private Button button6;
         private Button button5;
-        private TextBox textBox4;
-        private Label label9;
         private Button button7;
     }
 }

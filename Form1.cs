@@ -4,9 +4,10 @@ namespace sentirse_Bien
 {
     public partial class Form1 : Form
     {
-
+        List<Servicio> servicios;
         List<Profesional> profesional;
         List<Paciente> pacientes;
+        bool ctrlAgregar = false,ctrlPaciente = false, ctrlProfesional = false, ctrlTurno = false, ctrlServicio=false;
 
 
         public Form1()
@@ -14,7 +15,9 @@ namespace sentirse_Bien
             InitializeComponent();
             profesional = new List<Profesional>();
             pacientes = new List<Paciente>();
+            servicios = new List<Servicio>();
             tableLayoutPanel1.Visible = false;
+
         }
 
         private void Form1_Load(object sender, EventArgs e)// carga de datos temporales==========<<<<<<>>>>>>==================borrar despues de las pruebas
@@ -52,14 +55,14 @@ namespace sentirse_Bien
                 listBox1.Visible = false;
                 listBox2.Visible = false;
                 listBox3.Visible = false;
-                label6.Visible = false;
-                label7.Visible = false;
-                label8.Visible = false;
-                label9.Visible = false;
+                lbl1.Visible = false;
+                //label7.Visible = false;
+                //lblTurno.Visible = false;
+                //lbl2.Visible = false;
                 textBox1.Visible = false;
-                textBox2.Visible = false;
-                textBox3.Visible = false;
-                textBox4.Visible = false;
+                //textBox2.Visible = false;
+                //textBox3.Visible = false;
+                //textBox4.Visible = false;
             }
 
             else
@@ -80,21 +83,20 @@ namespace sentirse_Bien
                 //label8.Visible = true;
                 //label9.Visible = true;
                 textBox1.Visible = true;
-                textBox2.Visible = true;
-                textBox3.Visible = true;
-                textBox4.Visible = true;
+                //textBox2.Visible = true;
+                //textBox3.Visible = true;
+                //textBox4.Visible = true;
             }
 
 
         }
 
-        private void button1_Click(object sender, EventArgs e)//btn profesionales
+        private void btnProfesional(object sender, EventArgs e)//btn profesionales
         {
-            listBox1.Items.Clear();
-            listBox2.Items.Clear();
-            listBox3.Items.Clear();
-            listBox1.Items.Add(" Lista de Profesionales: ");
-            listBox1.Items.Add("");
+            ctrloff();
+            ctrlProfesional = true;
+            limpiarListBox();
+            
             if (profesional.Count != 0)
             {
                 {
@@ -107,12 +109,26 @@ namespace sentirse_Bien
 
         }
 
-
-        private void button2_Click(object sender, EventArgs e)//btn pacientes
+        private void btnServicio(object sender, EventArgs e)//btn pacientes
         {
-            listBox1.Items.Clear();
-            listBox2.Items.Clear();
-            listBox3.Items.Clear();
+            ctrloff();
+            ctrlServicio = true;
+            limpiarListBox();
+            listBox1.Items.Add("Lista de Servicios: ");
+            listBox1.Items.Add("");
+            if (pacientes.Count != 0)
+            {
+                foreach (var p in servicios)
+                {
+                    listBox1.Items.Add(p.nombreServicio);
+                }
+            }
+        }
+        private void btnPaciente(object sender, EventArgs e)//btn pacientes
+        {
+            ctrloff();
+            ctrlPaciente = true;
+            limpiarListBox();
             listBox1.Items.Add("Lista de Pacientes: ");
             listBox1.Items.Add("");
             if (pacientes.Count != 0)
@@ -124,11 +140,11 @@ namespace sentirse_Bien
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)// btn turnos
+        private void btnTurno(object sender, EventArgs e)// btn turnos
         {
-            listBox1.Items.Clear();
-            listBox2.Items.Clear();
-            listBox3.Items.Clear();
+            ctrloff();
+            ctrlTurno = true;
+            limpiarListBox();
             listBox1.Items.Add("Lista de Turnos: ");
             listBox1.Items.Add("");
             if (pacientes.Count != 0)
@@ -144,27 +160,54 @@ namespace sentirse_Bien
                 }
             }
         }
+        
 
-        private void button4_Click(object sender, EventArgs e)// agregar profesional, paciente y turno
+        private void btnAgregar(object sender, EventArgs e)// agregar profesional, paciente y turno
         {
-            label6.Visible = true;
-            label7.Visible = true;
-            label8.Visible = true;
-            label9.Visible = true;
-            button7_Click(sender, e);
+            if (ctrlProfesional)
+            {
+                NvoProfesional nvoProfesional = new NvoProfesional();
+                nvoProfesional.ShowDialog();
+                btnProfesional(sender,e);
+            }
+            if (ctrlPaciente)
+            {
+                NvoPaciente nvoPaciente = new NvoPaciente();
+                nvoPaciente.ShowDialog();
+                btnPaciente(sender, e);
+            }
+            if (ctrlServicio)
+            {
+                NvoServicio nvoServicio = new NvoServicio();
+                nvoServicio.ShowDialog();
+                btnServicio(sender, e);
+            }
+            if (ctrlTurno)
+            {
+                NvoTurno nvoTurno = new NvoTurno();
+                nvoTurno.ShowDialog();
+                btnTurno(sender, e);
+            }
+            //ctrlAgregar = true;
+            //lbl1.Visible = true;
+            //label7.Visible = true;
+            //label8.Visible = true;
+            //lbl2.Visible = true;
+            //btnListarTodo(sender, e);
 
         }
 
-        private void button6_Click(object sender, EventArgs e)//salir
+        private void btnSalir(object sender, EventArgs e)//salir
         {
             Application.Exit();
         }
 
-        private void button7_Click(object sender, EventArgs e)// listar todo
+        private void btnListarTodo(object sender, EventArgs e)// listar todo
         {
-            listBox1.Items.Clear();
-            listBox2.Items.Clear();
-            listBox3.Items.Clear();
+            ctrloff();
+            lbl1.Visible = false;
+            textBox1.Visible = false;
+            limpiarListBox();
             listBox1.Items.Add(" Lista de Profesionales: ");
             listBox1.Items.Add("");
             if (profesional.Count != 0)
@@ -208,10 +251,10 @@ namespace sentirse_Bien
             int[] fecha = new int[6];
             DateTime dia;
             prof = textBox1.Text;
-            servicio = textBox2.Text;
-            pac = textBox3.Text;
-            aux = textBox4.Text;
-            aux1 = aux.Split(',');
+            //servicio = textBox2.Text;
+            //pac = textBox3.Text;
+            //aux = textBox4.Text;
+            //aux1 = aux.Split(',');
 
             for(int i=0;i<6;i++)
             {
@@ -221,10 +264,29 @@ namespace sentirse_Bien
             dia = new DateTime(fecha[0], fecha[1], fecha[2], fecha[3], fecha[4], fecha[5]);
             
             
-            profesional.Add(new Profesional(prof,servicio));// ojo se puede agregar profesional nuevo o no
+            //profesional.Add(new Profesional(prof,servicio));// ojo se puede agregar profesional nuevo o no
             //pacientes.Add
 
-            button7_Click(sender, e);
+            btnListarTodo(sender, e);
         }
+        private void apagarTexBox()
+        {
+
+        }
+        private void ctrloff()
+        {
+            ctrlProfesional = false;
+            ctrlServicio = false;
+            ctrlPaciente = false;
+            ctrlTurno = false;
+            ctrlAgregar = false;
+        }
+        private void limpiarListBox()
+        {
+            listBox1.Items.Clear();
+            listBox2.Items.Clear();
+            listBox3.Items.Clear();
+        }
+
     }
 }
