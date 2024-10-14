@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panel1 = new Panel();
+            btnService = new Button();
             button7 = new Button();
             button6 = new Button();
             button4 = new Button();
@@ -38,9 +40,6 @@
             btnOpciones = new Button();
             label1 = new Label();
             panel2 = new Panel();
-            button5 = new Button();
-            textBox1 = new TextBox();
-            lbl1 = new Label();
             listBox3 = new ListBox();
             listBox2 = new ListBox();
             listBox1 = new ListBox();
@@ -65,6 +64,7 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(btnService);
             panel1.Controls.Add(button7);
             panel1.Controls.Add(button6);
             panel1.Controls.Add(button4);
@@ -80,9 +80,19 @@
             panel1.Size = new Size(400, 1173);
             panel1.TabIndex = 0;
             // 
+            // btnService
+            // 
+            btnService.Location = new Point(109, 604);
+            btnService.Name = "btnService";
+            btnService.Size = new Size(150, 46);
+            btnService.TabIndex = 12;
+            btnService.Text = "Servicio";
+            btnService.UseVisualStyleBackColor = true;
+            btnService.Visible = false;
+            // 
             // button7
             // 
-            button7.Location = new Point(109, 510);
+            button7.Location = new Point(109, 701);
             button7.Name = "button7";
             button7.Size = new Size(150, 46);
             button7.TabIndex = 11;
@@ -93,18 +103,21 @@
             // 
             // button6
             // 
-            button6.BackColor = Color.Salmon;
+            button6.BackColor = Color.Olive;
+            button6.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            button6.Image = Properties.Resources.logo_chico;
             button6.Location = new Point(109, 903);
             button6.Name = "button6";
             button6.Size = new Size(150, 154);
             button6.TabIndex = 10;
             button6.Text = "Salir";
+            button6.TextAlign = ContentAlignment.BottomCenter;
             button6.UseVisualStyleBackColor = false;
             button6.Click += btnSalir;
             // 
             // button4
             // 
-            button4.Location = new Point(109, 705);
+            button4.Location = new Point(109, 797);
             button4.Name = "button4";
             button4.Size = new Size(150, 46);
             button4.TabIndex = 5;
@@ -115,7 +128,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(109, 410);
+            button3.Location = new Point(109, 500);
             button3.Name = "button3";
             button3.Size = new Size(150, 46);
             button3.TabIndex = 4;
@@ -126,7 +139,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(109, 306);
+            button2.Location = new Point(109, 393);
             button2.Name = "button2";
             button2.Size = new Size(150, 46);
             button2.TabIndex = 3;
@@ -137,7 +150,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(109, 202);
+            button1.Location = new Point(109, 296);
             button1.Name = "button1";
             button1.Size = new Size(150, 46);
             button1.TabIndex = 2;
@@ -149,12 +162,16 @@
             // btnOpciones
             // 
             btnOpciones.Anchor = AnchorStyles.Top;
-            btnOpciones.Location = new Point(109, 98);
+            btnOpciones.BackColor = Color.Olive;
+            btnOpciones.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnOpciones.Image = (Image)resources.GetObject("btnOpciones.Image");
+            btnOpciones.Location = new Point(109, 106);
             btnOpciones.Name = "btnOpciones";
-            btnOpciones.Size = new Size(150, 46);
+            btnOpciones.Size = new Size(150, 150);
             btnOpciones.TabIndex = 1;
-            btnOpciones.Text = "Options";
-            btnOpciones.UseVisualStyleBackColor = true;
+            btnOpciones.Text = "Opciones";
+            btnOpciones.TextAlign = ContentAlignment.BottomCenter;
+            btnOpciones.UseVisualStyleBackColor = false;
             btnOpciones.Click += btnOpciones_Click;
             // 
             // label1
@@ -171,9 +188,6 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ControlLightLight;
-            panel2.Controls.Add(button5);
-            panel2.Controls.Add(textBox1);
-            panel2.Controls.Add(lbl1);
             panel2.Controls.Add(listBox3);
             panel2.Controls.Add(listBox2);
             panel2.Controls.Add(listBox1);
@@ -184,34 +198,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1755, 1173);
             panel2.TabIndex = 1;
-            // 
-            // button5
-            // 
-            button5.Location = new Point(1520, 1091);
-            button5.Name = "button5";
-            button5.Size = new Size(150, 46);
-            button5.TabIndex = 6;
-            button5.Text = "Aceptar";
-            button5.UseVisualStyleBackColor = true;
-            button5.Visible = false;
-            button5.Click += button5_Click;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(614, 871);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(423, 39);
-            textBox1.TabIndex = 7;
-            textBox1.Visible = false;
-            // 
-            // lbl1
-            // 
-            lbl1.AutoSize = true;
-            lbl1.Location = new Point(294, 878);
-            lbl1.Name = "lbl1";
-            lbl1.Size = new Size(0, 32);
-            lbl1.TabIndex = 4;
-            lbl1.Visible = false;
             // 
             // listBox3
             // 
@@ -357,7 +343,6 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
-            panel2.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
@@ -392,10 +377,8 @@
         private Button button1;
         private Button button4;
         private ListBox listBox3;
-        private TextBox textBox1;
-        private Label lbl1;
         private Button button6;
-        private Button button5;
         private Button button7;
+        private Button btnService;
     }
 }

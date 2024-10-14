@@ -49,17 +49,17 @@ namespace sentirse_Bien
                 button2.Visible = false;
                 button3.Visible = false;
                 button4.Visible = false;
-                button5.Visible = false;
+                btnService.Visible = false;
                 button6.Visible = true;
                 button7.Visible = false;
                 listBox1.Visible = false;
                 listBox2.Visible = false;
                 listBox3.Visible = false;
-                lbl1.Visible = false;
+                //lbl1.Visible = false;
                 //label7.Visible = false;
                 //lblTurno.Visible = false;
                 //lbl2.Visible = false;
-                textBox1.Visible = false;
+                //textBox1.Visible = false;
                 //textBox2.Visible = false;
                 //textBox3.Visible = false;
                 //textBox4.Visible = false;
@@ -72,7 +72,7 @@ namespace sentirse_Bien
                 button2.Visible = true;
                 button3.Visible = true;
                 button4.Visible = true;
-                button5.Visible = true;
+                btnService.Visible = true;
                 button6.Visible = false;
                 button7.Visible = true;
                 listBox1.Visible = true;
@@ -82,7 +82,7 @@ namespace sentirse_Bien
                 //label7.Visible = true;
                 //label8.Visible = true;
                 //label9.Visible = true;
-                textBox1.Visible = true;
+                //textBox1.Visible = true;
                 //textBox2.Visible = true;
                 //textBox3.Visible = true;
                 //textBox4.Visible = true;
@@ -166,8 +166,23 @@ namespace sentirse_Bien
         {
             if (ctrlProfesional)
             {
+                string n, esp;
+                Profesional p;
                 NvoProfesional nvoProfesional = new NvoProfesional();
                 nvoProfesional.ShowDialog();
+                if (nvoProfesional.DialogResult == DialogResult.OK)
+                {
+                    n=nvoProfesional.n;
+                    esp = nvoProfesional.esp;
+                    p = new Profesional(n,esp);
+                    profesional.Add(p);
+                    
+                }
+                else
+                {
+                    MessageBox.Show("Error");
+                }
+                nvoProfesional.Close();
                 btnProfesional(sender,e);
             }
             if (ctrlPaciente)
@@ -205,8 +220,8 @@ namespace sentirse_Bien
         private void btnListarTodo(object sender, EventArgs e)// listar todo
         {
             ctrloff();
-            lbl1.Visible = false;
-            textBox1.Visible = false;
+            //lbl1.Visible = false;
+            //textBox1.Visible = false;
             limpiarListBox();
             listBox1.Items.Add(" Lista de Profesionales: ");
             listBox1.Items.Add("");
@@ -250,7 +265,7 @@ namespace sentirse_Bien
             string[] aux1=new string[6];
             int[] fecha = new int[6];
             DateTime dia;
-            prof = textBox1.Text;
+            //prof = textBox1.Text;
             //servicio = textBox2.Text;
             //pac = textBox3.Text;
             //aux = textBox4.Text;
