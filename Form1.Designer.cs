@@ -32,13 +32,13 @@
             panel1 = new Panel();
             btnService = new Button();
             button7 = new Button();
-            button6 = new Button();
             button4 = new Button();
             button3 = new Button();
             button2 = new Button();
             button1 = new Button();
             btnOpciones = new Button();
             label1 = new Label();
+            button6 = new Button();
             panel2 = new Panel();
             listBox3 = new ListBox();
             listBox2 = new ListBox();
@@ -66,7 +66,6 @@
             panel1.BackColor = Color.White;
             panel1.Controls.Add(btnService);
             panel1.Controls.Add(button7);
-            panel1.Controls.Add(button6);
             panel1.Controls.Add(button4);
             panel1.Controls.Add(button3);
             panel1.Controls.Add(button2);
@@ -82,17 +81,18 @@
             // 
             // btnService
             // 
-            btnService.Location = new Point(109, 604);
+            btnService.Location = new Point(201, 396);
             btnService.Name = "btnService";
             btnService.Size = new Size(150, 46);
             btnService.TabIndex = 12;
             btnService.Text = "Servicio";
             btnService.UseVisualStyleBackColor = true;
             btnService.Visible = false;
+            btnService.Click += btnService_Click;
             // 
             // button7
             // 
-            button7.Location = new Point(109, 701);
+            button7.Location = new Point(100, 498);
             button7.Name = "button7";
             button7.Size = new Size(150, 46);
             button7.TabIndex = 11;
@@ -101,23 +101,9 @@
             button7.Visible = false;
             button7.Click += btnListarTodo;
             // 
-            // button6
-            // 
-            button6.BackColor = Color.Olive;
-            button6.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            button6.Image = Properties.Resources.logo_chico;
-            button6.Location = new Point(109, 903);
-            button6.Name = "button6";
-            button6.Size = new Size(150, 154);
-            button6.TabIndex = 10;
-            button6.Text = "Salir";
-            button6.TextAlign = ContentAlignment.BottomCenter;
-            button6.UseVisualStyleBackColor = false;
-            button6.Click += btnSalir;
-            // 
             // button4
             // 
-            button4.Location = new Point(109, 797);
+            button4.Location = new Point(100, 592);
             button4.Name = "button4";
             button4.Size = new Size(150, 46);
             button4.TabIndex = 5;
@@ -128,7 +114,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(109, 500);
+            button3.Location = new Point(0, 396);
             button3.Name = "button3";
             button3.Size = new Size(150, 46);
             button3.TabIndex = 4;
@@ -139,7 +125,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(109, 393);
+            button2.Location = new Point(201, 299);
             button2.Name = "button2";
             button2.Size = new Size(150, 46);
             button2.TabIndex = 3;
@@ -150,7 +136,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(109, 296);
+            button1.Location = new Point(3, 299);
             button1.Name = "button1";
             button1.Size = new Size(150, 46);
             button1.TabIndex = 2;
@@ -165,7 +151,7 @@
             btnOpciones.BackColor = Color.Olive;
             btnOpciones.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnOpciones.Image = (Image)resources.GetObject("btnOpciones.Image");
-            btnOpciones.Location = new Point(109, 106);
+            btnOpciones.Location = new Point(100, 83);
             btnOpciones.Name = "btnOpciones";
             btnOpciones.Size = new Size(150, 150);
             btnOpciones.TabIndex = 1;
@@ -185,11 +171,27 @@
             label1.TabIndex = 0;
             label1.Text = "Herramientas";
             // 
+            // button6
+            // 
+            button6.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button6.BackColor = Color.MediumVioletRed;
+            button6.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            button6.Image = Properties.Resources.logo_chico;
+            button6.Location = new Point(1559, 975);
+            button6.Name = "button6";
+            button6.Size = new Size(150, 154);
+            button6.TabIndex = 10;
+            button6.Text = "Salir";
+            button6.TextAlign = ContentAlignment.BottomCenter;
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += btnSalir;
+            // 
             // panel2
             // 
             panel2.BackColor = SystemColors.ControlLightLight;
             panel2.Controls.Add(listBox3);
             panel2.Controls.Add(listBox2);
+            panel2.Controls.Add(button6);
             panel2.Controls.Add(listBox1);
             panel2.Controls.Add(tableLayoutPanel1);
             panel2.Dock = DockStyle.Fill;

@@ -5,15 +5,15 @@ namespace sentirse_Bien
     public partial class Form1 : Form
     {
         List<Servicio> servicios;
-        List<Profesional> profesional;
+        List<Profesional> profesionales;
         List<Paciente> pacientes;
-        bool ctrlAgregar = false,ctrlPaciente = false, ctrlProfesional = false, ctrlTurno = false, ctrlServicio=false;
+        bool ctrlAgregar = false, ctrlPaciente = false, ctrlProfesional = false, ctrlTurno = false, ctrlServicio = false;
 
 
         public Form1()
         {
             InitializeComponent();
-            profesional = new List<Profesional>();
+            profesionales = new List<Profesional>();
             pacientes = new List<Paciente>();
             servicios = new List<Servicio>();
             tableLayoutPanel1.Visible = false;
@@ -22,9 +22,9 @@ namespace sentirse_Bien
 
         private void Form1_Load(object sender, EventArgs e)// carga de datos temporales==========<<<<<<>>>>>>==================borrar despues de las pruebas
         {
-            profesional.Add(new Profesional("Felicidad", "Masajes"));
-            profesional.Add(new Profesional("Alegría", "Estética"));
-            profesional.Add(new Profesional("Bienestar", "Cuidado_Piel"));
+            profesionales.Add(new Profesional("Felicidad", "Masajes"));
+            profesionales.Add(new Profesional("Alegría", "Estética"));
+            profesionales.Add(new Profesional("Bienestar", "Cuidado_Piel"));
             Paciente p1 = new Paciente("Lindor", 23);
             p1.turnos.Add(new DateTime(2024, 11, 5, 18, 00, 00));
             Paciente p2 = new Paciente("Heraldo", 24);
@@ -96,11 +96,11 @@ namespace sentirse_Bien
             ctrloff();
             ctrlProfesional = true;
             limpiarListBox();
-            
-            if (profesional.Count != 0)
+
+            if (profesionales.Count != 0)
             {
                 {
-                    foreach (var p in profesional)
+                    foreach (var p in profesionales)
                     {
                         listBox1.Items.Add(p.nombre);
                     }
@@ -109,7 +109,7 @@ namespace sentirse_Bien
 
         }
 
-        private void btnServicio(object sender, EventArgs e)//btn pacientes
+        private void btnService_Click(object sender, EventArgs e)//btn 
         {
             ctrloff();
             ctrlServicio = true;
@@ -160,9 +160,9 @@ namespace sentirse_Bien
                 }
             }
         }
-        
 
-        private void btnAgregar(object sender, EventArgs e)// agregar profesional, paciente y turno
+
+        private void btnAgregar(object sender, EventArgs e)// agregar profesionales, paciente y turno
         {
             if (ctrlProfesional)
             {
@@ -172,30 +172,68 @@ namespace sentirse_Bien
                 nvoProfesional.ShowDialog();
                 if (nvoProfesional.DialogResult == DialogResult.OK)
                 {
-                    n=nvoProfesional.n;
+                    n = nvoProfesional.n;
                     esp = nvoProfesional.esp;
-                    p = new Profesional(n,esp);
-                    profesional.Add(p);
-                    
+                    p = new Profesional(n, esp);
+                    profesionales.Add(p);
+
                 }
                 else
                 {
-                    MessageBox.Show("Error");
+                    //MessageBox.Show("Error");
                 }
                 nvoProfesional.Close();
-                btnProfesional(sender,e);
+                btnProfesional(sender, e);
             }
             if (ctrlPaciente)
             {
+                string n;
+                int edad;
+                Paciente p;
                 NvoPaciente nvoPaciente = new NvoPaciente();
                 nvoPaciente.ShowDialog();
+                if (nvoPaciente.DialogResult == DialogResult.OK)
+                {
+                    n = nvoPaciente.nombre;
+                    edad = nvoPaciente.edad;
+                    p = new Paciente(n, edad);
+                    pacientes.Add(p);
+
+                }
+                else
+                {
+                    //MessageBox.Show("Error");
+                }
+                nvoPaciente.Close();
                 btnPaciente(sender, e);
             }
             if (ctrlServicio)
             {
+                string nombreServicio;
+                decimal precio;
+
+                TimeSpan duracion;
                 NvoServicio nvoServicio = new NvoServicio();
                 nvoServicio.ShowDialog();
-                btnServicio(sender, e);
+                Servicio s;
+                if (nvoServicio.DialogResult == DialogResult.OK)
+                {
+                    
+                    s = new Servicio(nombreProfesional, nombreServicio, duracion, precio);
+                    servicios.Add(s);
+
+                }
+                else
+                {
+                    //MessageBox.Show("Error");
+                }
+                nvoServicio.Close();
+                btnPaciente(sender, e);
+
+
+
+
+                btnService_Click(sender, e);
             }
             if (ctrlTurno)
             {
@@ -225,10 +263,10 @@ namespace sentirse_Bien
             limpiarListBox();
             listBox1.Items.Add(" Lista de Profesionales: ");
             listBox1.Items.Add("");
-            if (profesional.Count != 0)
+            if (profesionales.Count != 0)
             {
                 {
-                    foreach (var p in profesional)
+                    foreach (var p in profesionales)
                     {
                         listBox1.Items.Add(p.nombre);
                     }
@@ -261,8 +299,8 @@ namespace sentirse_Bien
 
         private void button5_Click(object sender, EventArgs e)
         {
-            string prof, pac, servicio,aux;
-            string[] aux1=new string[6];
+            string prof, pac, servicio, aux;
+            string[] aux1 = new string[6];
             int[] fecha = new int[6];
             DateTime dia;
             //prof = textBox1.Text;
@@ -271,15 +309,15 @@ namespace sentirse_Bien
             //aux = textBox4.Text;
             //aux1 = aux.Split(',');
 
-            for(int i=0;i<6;i++)
+            for (int i = 0; i < 6; i++)
             {
-                fecha[i]=int.Parse(aux1[i]);
+                fecha[i] = int.Parse(aux1[i]);
 
             }
             dia = new DateTime(fecha[0], fecha[1], fecha[2], fecha[3], fecha[4], fecha[5]);
-            
-            
-            //profesional.Add(new Profesional(prof,servicio));// ojo se puede agregar profesional nuevo o no
+
+
+            //profesionales.Add(new Profesional(prof,servicio));// ojo se puede agregar profesionales nuevo o no
             //pacientes.Add
 
             btnListarTodo(sender, e);
@@ -303,5 +341,6 @@ namespace sentirse_Bien
             listBox3.Items.Clear();
         }
 
+        
     }
 }
