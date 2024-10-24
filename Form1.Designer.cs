@@ -30,9 +30,9 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            button6 = new Button();
             btnPdf = new Button();
             panel8 = new Panel();
-            button6 = new Button();
             btnBorrar = new Button();
             btnService = new Button();
             button7 = new Button();
@@ -75,9 +75,9 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(button6);
             panel1.Controls.Add(btnPdf);
             panel1.Controls.Add(panel8);
-            panel1.Controls.Add(button6);
             panel1.Controls.Add(btnBorrar);
             panel1.Controls.Add(btnService);
             panel1.Controls.Add(button7);
@@ -92,6 +92,21 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(425, 1570);
             panel1.TabIndex = 0;
+            // 
+            // button6
+            // 
+            button6.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button6.BackColor = Color.MediumVioletRed;
+            button6.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            button6.Image = Properties.Resources.logo_chico;
+            button6.Location = new Point(38, 1150);
+            button6.Name = "button6";
+            button6.Size = new Size(349, 200);
+            button6.TabIndex = 10;
+            button6.Text = "Salir";
+            button6.TextAlign = ContentAlignment.BottomCenter;
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += btnSalir;
             // 
             // btnPdf
             // 
@@ -114,21 +129,6 @@
             panel8.Size = new Size(425, 214);
             panel8.TabIndex = 14;
             panel8.Visible = false;
-            // 
-            // button6
-            // 
-            button6.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button6.BackColor = Color.MediumVioletRed;
-            button6.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            button6.Image = Properties.Resources.logo_chico;
-            button6.Location = new Point(38, 1133);
-            button6.Name = "button6";
-            button6.Size = new Size(349, 200);
-            button6.TabIndex = 10;
-            button6.Text = "Salir";
-            button6.TextAlign = ContentAlignment.BottomCenter;
-            button6.UseVisualStyleBackColor = false;
-            button6.Click += btnSalir;
             // 
             // btnBorrar
             // 

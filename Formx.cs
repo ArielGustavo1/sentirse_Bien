@@ -110,7 +110,7 @@ namespace sentirse_Bien
                 document.Close();
             }
             }
-            
+            MessageBox.Show("Archivo generado con éxito");
         }
         
 

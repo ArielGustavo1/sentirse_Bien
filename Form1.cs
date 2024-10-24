@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.Json;
+using iText.Layout.Element;
 
 namespace sentirse_Bien
 {
@@ -28,12 +29,14 @@ namespace sentirse_Bien
             servicios = new List<Servicio>();
             tableLayoutPanel1.Visible = false;
             tipoUser = u;
-            pacientes = Formx.LeerListaP(@"D:\TUP\Cursado\Metodologia de sistemas\app_escritorio\sentirse_Bien\bin\Debug\net8.0-windows\listaPacientes.json");
-            servicios = Formx.LeerListaS(@"D:\TUP\Cursado\Metodologia de sistemas\app_escritorio\sentirse_Bien\bin\Debug\net8.0-windows\listaServicios.json");
+            pacientes = Formx.LeerListaP(@"D:\TUP\Cursado\Metodologia de sistemas\Clonado\bin\Debug\net8.0-windows\listaPacientes.json");
+            servicios = Formx.LeerListaS(@"D:\TUP\Cursado\Metodologia de sistemas\Clonado\bin\Debug\net8.0-windows\listaServicios.json");
         }
 
         private void Form1_Load(object sender, EventArgs e)// carga de datos temporales==========<>==================borrar despues de las pruebas
         {
+            pacientes = Formx.LeerListaP(@"D:\TUP\Cursado\Metodologia de sistemas\Clonado\bin\Debug\net8.0-windows\listaPacientes.json");
+            servicios = Formx.LeerListaS(@"D:\TUP\Cursado\Metodologia de sistemas\Clonado\bin\Debug\net8.0-windows\listaServicios.json");
             /**pantalla completa y tamaño de letra. Registro de usuario. registro de pagos. pdf. usuario saca turno, poder registrarse nvo user*/
 
             //string prof1 = "Felicidad";
@@ -639,7 +642,24 @@ namespace sentirse_Bien
             }
             else if (ctrlPaciente)
             {
+                if (pacientes.Count > 0)
+                {
+                    HashSet<string> listaDePacientes = new HashSet<string>();
+                    List<string>list=new List<string>();
+                    listaDePacientes.Add("Lista de Pacientes: ");
+                    listaDePacientes.Add("");
+                    
+                    foreach (var p in pacientes)
+                    {
+                        listaDePacientes.Add(p.nombre);
+                            
 
+                    }
+                    list = listaDePacientes.ToList();
+                    
+                    Formx.archivoPdf(list, "pacientes.pdf");
+                }
+                
             }
             else if (ctrlTurno) 
             {
