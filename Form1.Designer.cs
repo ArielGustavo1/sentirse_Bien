@@ -1,5 +1,6 @@
 ﻿namespace sentirse_Bien
 {
+    [Serializable]
     partial class Form1
     {
         /// <summary>
@@ -28,8 +29,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panel1 = new Panel();
+            btnPdf = new Button();
+            panel8 = new Panel();
+            button6 = new Button();
+            btnBorrar = new Button();
             btnService = new Button();
             button7 = new Button();
             button4 = new Button();
@@ -37,16 +41,21 @@
             button2 = new Button();
             button1 = new Button();
             btnOpciones = new Button();
-            label1 = new Label();
-            button6 = new Button();
             panel2 = new Panel();
+            panel10 = new Panel();
             listBox3 = new ListBox();
             listBox2 = new ListBox();
             listBox1 = new ListBox();
+            panel9 = new Panel();
+            panel7 = new Panel();
+            label9 = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel5 = new Panel();
             label5 = new Label();
             panel6 = new Panel();
+            label8 = new Label();
+            label7 = new Label();
+            label6 = new Label();
             label3 = new Label();
             panel4 = new Panel();
             label4 = new Label();
@@ -54,6 +63,8 @@
             label2 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            panel10.SuspendLayout();
+            panel7.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             panel5.SuspendLayout();
             panel6.SuspendLayout();
@@ -64,6 +75,10 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(btnPdf);
+            panel1.Controls.Add(panel8);
+            panel1.Controls.Add(button6);
+            panel1.Controls.Add(btnBorrar);
             panel1.Controls.Add(btnService);
             panel1.Controls.Add(button7);
             panel1.Controls.Add(button4);
@@ -71,19 +86,68 @@
             panel1.Controls.Add(button2);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(btnOpciones);
-            panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(10);
             panel1.Name = "panel1";
-            panel1.Size = new Size(400, 1173);
+            panel1.Size = new Size(425, 1570);
             panel1.TabIndex = 0;
+            // 
+            // btnPdf
+            // 
+            btnPdf.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnPdf.Location = new Point(3, 1027);
+            btnPdf.Name = "btnPdf";
+            btnPdf.Size = new Size(419, 72);
+            btnPdf.TabIndex = 15;
+            btnPdf.Text = "Reporte pdf";
+            btnPdf.UseVisualStyleBackColor = true;
+            btnPdf.Visible = false;
+            btnPdf.Click += btnPdf_Click;
+            // 
+            // panel8
+            // 
+            panel8.BackgroundImage = Properties.Resources.logo_chico;
+            panel8.Dock = DockStyle.Bottom;
+            panel8.Location = new Point(0, 1356);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(425, 214);
+            panel8.TabIndex = 14;
+            panel8.Visible = false;
+            // 
+            // button6
+            // 
+            button6.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button6.BackColor = Color.MediumVioletRed;
+            button6.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            button6.Image = Properties.Resources.logo_chico;
+            button6.Location = new Point(38, 1133);
+            button6.Name = "button6";
+            button6.Size = new Size(349, 200);
+            button6.TabIndex = 10;
+            button6.Text = "Salir";
+            button6.TextAlign = ContentAlignment.BottomCenter;
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += btnSalir;
+            // 
+            // btnBorrar
+            // 
+            btnBorrar.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnBorrar.Location = new Point(3, 932);
+            btnBorrar.Name = "btnBorrar";
+            btnBorrar.Size = new Size(422, 66);
+            btnBorrar.TabIndex = 13;
+            btnBorrar.Text = "Borrar";
+            btnBorrar.UseVisualStyleBackColor = true;
+            btnBorrar.Visible = false;
+            btnBorrar.Click += btnBorrar_Click;
             // 
             // btnService
             // 
-            btnService.Location = new Point(201, 396);
+            btnService.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnService.Location = new Point(3, 458);
             btnService.Name = "btnService";
-            btnService.Size = new Size(150, 46);
+            btnService.Size = new Size(419, 72);
             btnService.TabIndex = 12;
             btnService.Text = "Servicio";
             btnService.UseVisualStyleBackColor = true;
@@ -92,9 +156,10 @@
             // 
             // button7
             // 
-            button7.Location = new Point(100, 498);
+            button7.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            button7.Location = new Point(3, 737);
             button7.Name = "button7";
-            button7.Size = new Size(150, 46);
+            button7.Size = new Size(422, 66);
             button7.TabIndex = 11;
             button7.Text = "Listar Todo";
             button7.UseVisualStyleBackColor = true;
@@ -103,9 +168,10 @@
             // 
             // button4
             // 
-            button4.Location = new Point(100, 592);
+            button4.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            button4.Location = new Point(3, 835);
             button4.Name = "button4";
-            button4.Size = new Size(150, 46);
+            button4.Size = new Size(422, 66);
             button4.TabIndex = 5;
             button4.Text = "Agregar";
             button4.UseVisualStyleBackColor = true;
@@ -114,9 +180,10 @@
             // 
             // button3
             // 
-            button3.Location = new Point(0, 396);
+            button3.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            button3.Location = new Point(6, 644);
             button3.Name = "button3";
-            button3.Size = new Size(150, 46);
+            button3.Size = new Size(419, 72);
             button3.TabIndex = 4;
             button3.Text = "Turno";
             button3.UseVisualStyleBackColor = true;
@@ -125,9 +192,10 @@
             // 
             // button2
             // 
-            button2.Location = new Point(201, 299);
+            button2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            button2.Location = new Point(3, 552);
             button2.Name = "button2";
-            button2.Size = new Size(150, 46);
+            button2.Size = new Size(419, 72);
             button2.TabIndex = 3;
             button2.Text = "Paciente";
             button2.UseVisualStyleBackColor = true;
@@ -136,9 +204,10 @@
             // 
             // button1
             // 
-            button1.Location = new Point(3, 299);
+            button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            button1.Location = new Point(3, 364);
             button1.Name = "button1";
-            button1.Size = new Size(150, 46);
+            button1.Size = new Size(419, 72);
             button1.TabIndex = 2;
             button1.Text = "Profesional";
             button1.UseVisualStyleBackColor = true;
@@ -148,85 +217,114 @@
             // btnOpciones
             // 
             btnOpciones.Anchor = AnchorStyles.Top;
-            btnOpciones.BackColor = Color.Olive;
-            btnOpciones.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnOpciones.Image = (Image)resources.GetObject("btnOpciones.Image");
-            btnOpciones.Location = new Point(100, 83);
+            btnOpciones.BackColor = Color.MediumSeaGreen;
+            btnOpciones.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnOpciones.Location = new Point(38, 43);
             btnOpciones.Name = "btnOpciones";
-            btnOpciones.Size = new Size(150, 150);
+            btnOpciones.Size = new Size(349, 200);
             btnOpciones.TabIndex = 1;
             btnOpciones.Text = "Opciones";
             btnOpciones.TextAlign = ContentAlignment.BottomCenter;
             btnOpciones.UseVisualStyleBackColor = false;
             btnOpciones.Click += btnOpciones_Click;
             // 
-            // label1
-            // 
-            label1.Anchor = AnchorStyles.Top;
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label1.Location = new Point(78, 35);
-            label1.Name = "label1";
-            label1.Size = new Size(222, 45);
-            label1.TabIndex = 0;
-            label1.Text = "Herramientas";
-            // 
-            // button6
-            // 
-            button6.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button6.BackColor = Color.MediumVioletRed;
-            button6.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            button6.Image = Properties.Resources.logo_chico;
-            button6.Location = new Point(1559, 975);
-            button6.Name = "button6";
-            button6.Size = new Size(150, 154);
-            button6.TabIndex = 10;
-            button6.Text = "Salir";
-            button6.TextAlign = ContentAlignment.BottomCenter;
-            button6.UseVisualStyleBackColor = false;
-            button6.Click += btnSalir;
-            // 
             // panel2
             // 
-            panel2.BackColor = SystemColors.ControlLightLight;
-            panel2.Controls.Add(listBox3);
-            panel2.Controls.Add(listBox2);
-            panel2.Controls.Add(button6);
-            panel2.Controls.Add(listBox1);
+            panel2.BackColor = Color.White;
+            panel2.Controls.Add(panel10);
+            panel2.Controls.Add(panel9);
+            panel2.Controls.Add(panel7);
             panel2.Controls.Add(tableLayoutPanel1);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(400, 0);
+            panel2.Location = new Point(425, 0);
             panel2.Margin = new Padding(10);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1755, 1173);
+            panel2.Size = new Size(3069, 1570);
             panel2.TabIndex = 1;
+            // 
+            // panel10
+            // 
+            panel10.Anchor = AnchorStyles.None;
+            panel10.BackColor = Color.White;
+            panel10.Controls.Add(listBox3);
+            panel10.Controls.Add(listBox2);
+            panel10.Controls.Add(listBox1);
+            panel10.Location = new Point(524, 3);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(2545, 976);
+            panel10.TabIndex = 13;
             // 
             // listBox3
             // 
+            listBox3.BackColor = SystemColors.HighlightText;
+            listBox3.BorderStyle = BorderStyle.None;
+            listBox3.Font = new Font("Segoe UI", 18F);
             listBox3.FormattingEnabled = true;
-            listBox3.Location = new Point(1246, 3);
+            listBox3.ItemHeight = 65;
+            listBox3.Location = new Point(1754, 3);
             listBox3.Name = "listBox3";
-            listBox3.Size = new Size(497, 772);
+            listBox3.Size = new Size(788, 910);
             listBox3.TabIndex = 3;
             listBox3.Visible = false;
             // 
             // listBox2
             // 
+            listBox2.BackColor = SystemColors.HighlightText;
+            listBox2.BorderStyle = BorderStyle.None;
+            listBox2.Font = new Font("Segoe UI", 18F);
             listBox2.FormattingEnabled = true;
-            listBox2.Location = new Point(725, 3);
+            listBox2.ItemHeight = 65;
+            listBox2.Location = new Point(880, 3);
             listBox2.Name = "listBox2";
-            listBox2.Size = new Size(515, 772);
+            listBox2.Size = new Size(868, 910);
             listBox2.TabIndex = 2;
             listBox2.Visible = false;
             // 
             // listBox1
             // 
+            listBox1.BackColor = SystemColors.HighlightText;
+            listBox1.BorderStyle = BorderStyle.None;
+            listBox1.Font = new Font("Segoe UI", 18F);
             listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(257, 3);
+            listBox1.ItemHeight = 65;
+            listBox1.Location = new Point(0, 3);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(462, 772);
+            listBox1.Size = new Size(874, 910);
             listBox1.TabIndex = 1;
             listBox1.Visible = false;
+            // 
+            // panel9
+            // 
+            panel9.BackgroundImage = Properties.Resources.logo_chico;
+            panel9.Dock = DockStyle.Bottom;
+            panel9.Location = new Point(524, 1356);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(2545, 214);
+            panel9.TabIndex = 12;
+            // 
+            // panel7
+            // 
+            panel7.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel7.BackColor = SystemColors.HighlightText;
+            panel7.Controls.Add(label9);
+            panel7.Location = new Point(524, 967);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(2545, 390);
+            panel7.TabIndex = 11;
+            // 
+            // label9
+            // 
+            label9.Anchor = AnchorStyles.None;
+            label9.AutoSize = true;
+            label9.BackColor = Color.Transparent;
+            label9.Font = new Font("CommercialScript BT", 45F);
+            label9.ForeColor = SystemColors.ControlText;
+            label9.Location = new Point(345, 15);
+            label9.Name = "label9";
+            label9.Size = new Size(1881, 552);
+            label9.TabIndex = 11;
+            label9.Text = "Spa Sentirse bien... \r\nRelájate y revive en nuestro oasis de paz \r\n-masajes tratamientos cuidados relax-\r\n\r\n";
+            label9.TextAlign = ContentAlignment.BottomCenter;
             // 
             // tableLayoutPanel1
             // 
@@ -245,106 +343,154 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayoutPanel1.Size = new Size(254, 1173);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.Size = new Size(524, 1570);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // panel5
             // 
-            panel5.BackColor = SystemColors.Highlight;
+            panel5.BackColor = Color.MediumSeaGreen;
             panel5.Controls.Add(label5);
             panel5.Dock = DockStyle.Fill;
-            panel5.Location = new Point(3, 882);
+            panel5.Location = new Point(3, 1179);
             panel5.Name = "panel5";
-            panel5.Size = new Size(248, 288);
+            panel5.Size = new Size(518, 388);
             panel5.TabIndex = 2;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Dock = DockStyle.Top;
-            label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label5.Font = new Font("CommercialScript BT", 50F, FontStyle.Bold);
+            label5.ForeColor = SystemColors.ControlText;
             label5.Location = new Point(0, 0);
             label5.Name = "label5";
-            label5.Size = new Size(107, 45);
+            label5.Size = new Size(336, 154);
             label5.TabIndex = 5;
-            label5.Text = "Order";
+            label5.Text = "Bien";
             // 
             // panel6
             // 
-            panel6.BackColor = SystemColors.Info;
+            panel6.BackColor = Color.MediumSeaGreen;
+            panel6.Controls.Add(label8);
+            panel6.Controls.Add(label7);
+            panel6.Controls.Add(label6);
             panel6.Controls.Add(label3);
             panel6.Dock = DockStyle.Fill;
-            panel6.Location = new Point(3, 296);
+            panel6.Location = new Point(3, 395);
             panel6.Name = "panel6";
-            panel6.Size = new Size(248, 287);
+            panel6.Size = new Size(518, 386);
             panel6.TabIndex = 2;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Dock = DockStyle.Top;
+            label8.Font = new Font("CommercialScript BT", 28F, FontStyle.Bold);
+            label8.ForeColor = SystemColors.ControlText;
+            label8.Location = new Point(0, 261);
+            label8.Name = "label8";
+            label8.Size = new Size(217, 87);
+            label8.TabIndex = 6;
+            label8.Text = "Relax";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Dock = DockStyle.Top;
+            label7.Font = new Font("CommercialScript BT", 28F, FontStyle.Bold);
+            label7.ForeColor = SystemColors.ControlText;
+            label7.Location = new Point(0, 174);
+            label7.Name = "label7";
+            label7.Size = new Size(501, 87);
+            label7.TabIndex = 5;
+            label7.Text = "Cuidado de piel";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Dock = DockStyle.Top;
+            label6.Font = new Font("CommercialScript BT", 28F, FontStyle.Bold);
+            label6.ForeColor = SystemColors.ControlText;
+            label6.Location = new Point(0, 87);
+            label6.Name = "label6";
+            label6.Size = new Size(428, 87);
+            label6.TabIndex = 4;
+            label6.Text = "Tratamientos";
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Dock = DockStyle.Top;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label3.Font = new Font("CommercialScript BT", 28F, FontStyle.Bold);
+            label3.ForeColor = SystemColors.ControlText;
             label3.Location = new Point(0, 0);
             label3.Name = "label3";
-            label3.Size = new Size(107, 45);
+            label3.Size = new Size(263, 87);
             label3.TabIndex = 3;
-            label3.Text = "Order";
+            label3.Text = "Masajes";
             // 
             // panel4
             // 
-            panel4.BackColor = SystemColors.Desktop;
+            panel4.BackColor = Color.MediumVioletRed;
             panel4.Controls.Add(label4);
             panel4.Dock = DockStyle.Fill;
-            panel4.Location = new Point(3, 589);
+            panel4.Location = new Point(3, 787);
             panel4.Name = "panel4";
-            panel4.Size = new Size(248, 287);
+            panel4.Size = new Size(518, 386);
             panel4.TabIndex = 1;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Dock = DockStyle.Top;
-            label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label4.Font = new Font("CommercialScript BT", 50F, FontStyle.Bold);
+            label4.ForeColor = SystemColors.ControlText;
             label4.Location = new Point(0, 0);
             label4.Name = "label4";
-            label4.Size = new Size(107, 45);
+            label4.Size = new Size(480, 154);
             label4.TabIndex = 4;
-            label4.Text = "Order";
+            label4.Text = "Sentirse";
             // 
             // panel3
             // 
-            panel3.BackColor = SystemColors.ActiveCaption;
+            panel3.BackColor = Color.MediumVioletRed;
             panel3.Controls.Add(label2);
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(3, 3);
             panel3.Name = "panel3";
-            panel3.Size = new Size(248, 287);
+            panel3.Size = new Size(518, 386);
             panel3.TabIndex = 0;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Dock = DockStyle.Top;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label2.Font = new Font("CommercialScript BT", 60F, FontStyle.Bold);
+            label2.ForeColor = SystemColors.ControlText;
             label2.Location = new Point(0, 0);
             label2.Name = "label2";
-            label2.Size = new Size(107, 45);
+            label2.Size = new Size(328, 184);
             label2.TabIndex = 2;
-            label2.Text = "Order";
+            label2.Text = "Spa";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(2155, 1173);
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(3494, 1570);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "Form1";
             Text = "Spa Sentirse Bien";
+            WindowState = FormWindowState.Maximized;
             Load += Form1_Load;
             panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             panel2.ResumeLayout(false);
+            panel10.ResumeLayout(false);
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
@@ -361,7 +507,6 @@
 
         private Panel panel1;
         private Panel panel2;
-        private Label label1;
         private TableLayoutPanel tableLayoutPanel1;
         private Panel panel3;
         private Button btnOpciones;
@@ -382,5 +527,15 @@
         private Button button6;
         private Button button7;
         private Button btnService;
+        private Button btnBorrar;
+        private Label label7;
+        private Label label6;
+        private Label label8;
+        private Panel panel7;
+        private Panel panel9;
+        private Label label9;
+        private Panel panel8;
+        private Panel panel10;
+        private Button btnPdf;
     }
 }

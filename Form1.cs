@@ -1,42 +1,97 @@
 using System.Collections.ObjectModel;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.Json;
 
 namespace sentirse_Bien
 {
     public partial class Form1 : Form
     {
         List<Servicio> servicios;
-        List<Profesional> profesionales;
+        //List<Profesional> profesionales;
         List<Paciente> pacientes;
-        bool ctrlAgregar = false, ctrlPaciente = false, ctrlProfesional = false, ctrlTurno = false, ctrlServicio = false;
+        Profesional p = new Profesional("");
+        string auxNombre = string.Empty;
+        string tipoUser = string.Empty;
+
+        bool ctrlAgregar = false, ctrlPaciente = false, ctrlProfesional = false, ctrlTurno = false, ctrlServicio = false, ctrlBorrar = false;
 
 
-        public Form1()
+        public Form1(string u)
         {
             InitializeComponent();
-            profesionales = new List<Profesional>();
+            //profesionales = new List<Profesional>();
+            //this.WindowState = FormWindowState.Maximized;
             pacientes = new List<Paciente>();
             servicios = new List<Servicio>();
             tableLayoutPanel1.Visible = false;
-
+            tipoUser = u;
+            pacientes = Form1.LeerListaP(@"D:\TUP\Cursado\Metodologia de sistemas\app_escritorio\sentirse_Bien\bin\Debug\net8.0-windows\listaPacientes.json");
+            servicios = Form1.LeerListaS(@"D:\TUP\Cursado\Metodologia de sistemas\app_escritorio\sentirse_Bien\bin\Debug\net8.0-windows\listaServicios.json");
         }
 
-        private void Form1_Load(object sender, EventArgs e)// carga de datos temporales==========<<<<<<>>>>>>==================borrar despues de las pruebas
+        private void Form1_Load(object sender, EventArgs e)// carga de datos temporales==========<>==================borrar despues de las pruebas
         {
-            profesionales.Add(new Profesional("Felicidad", "Masajes"));
-            profesionales.Add(new Profesional("Alegría", "Estética"));
-            profesionales.Add(new Profesional("Bienestar", "Cuidado_Piel"));
-            Paciente p1 = new Paciente("Lindor", 23);
-            p1.turnos.Add(new DateTime(2024, 11, 5, 18, 00, 00));
-            Paciente p2 = new Paciente("Heraldo", 24);
-            p2.turnos.Add(new DateTime(2024, 11, 6, 17, 00, 00));
-            Paciente p3 = new Paciente("Rómulo", 35);
-            p3.turnos.Add(new DateTime(2024, 11, 7, 08, 00, 00));
-            Paciente p4 = new Paciente("Amado", 25);
-            p4.turnos.Add(new DateTime(2024, 11, 8, 10, 00, 00));
-            pacientes.Add(p1);
-            pacientes.Add(p2);
-            pacientes.Add(p3);
-            pacientes.Add(p4);
+            /**pantalla completa y tamaño de letra. Registro de usuario. registro de pagos. pdf. usuario saca turno, poder registrarse nvo user*/
+
+            //string prof1 = "Felicidad";
+            //string prof2 = "Alegría";
+            //string prof3 = "Bienestar";
+
+            //string servicio1 = "masajes";
+            //string servicio2 = "estética";
+            //string servicio3 = "cuidado de piel";
+
+            //Profesional pro1 = new Profesional(prof1);//masaje
+            //Profesional pro2 = new Profesional(prof2);//estetica
+            //Profesional pro3 = new Profesional(prof3);//cuidado de piel
+
+            //Paciente p1 = new Paciente("Lindor", 23);
+            //Paciente p2 = new Paciente("Rómulo", 24);
+            //Paciente p3 = new Paciente("Ruperto", 42);
+            //Paciente p4 = new Paciente("Isadora", 50);
+            ////---------------------------------------------------------------
+            //TimeSpan duracion = new TimeSpan(0, 50, 00);
+            //DateTime inicio = new DateTime(2024, 11, 5, 18, 00, 00);
+            //decimal precio = 12000;
+            //Servicio s1 = new Servicio(pro1, servicio1, duracion, precio);
+
+            //Turno t1 = new Turno(inicio, s1);
+            //p1.turnos.Add(t1);
+            ////---------------------------------------------------------------
+            //duracion = new TimeSpan(0, 50, 00);
+            //inicio = new DateTime(2024, 11, 5, 18, 00, 00);
+            //precio = 15000;
+            //Servicio s2 = new Servicio(pro2, servicio2, duracion, precio);
+
+            //Turno t2 = new Turno(inicio, s2);
+            //p2.turnos.Add(t2);
+            ////---------------------------------------------------------------
+            //duracion = new TimeSpan(0, 50, 0);
+            //inicio = new DateTime(2024, 11, 7, 10, 00, 00);
+            //precio = 18000;
+            //Servicio s3 = new Servicio(pro3, servicio3, duracion, precio);
+            //Turno t3 = new Turno(inicio, s3);
+            //p3.turnos.Add(t3);
+            ////---------------------------------------------------------------
+            //inicio = new DateTime(2024, 10, 26, 17, 00, 00);
+
+            //Turno t4 = new Turno(inicio, s2);
+            //p4.turnos.Add(t4);
+            ////---------------------------------------------------------------
+
+            //pacientes.Add(p1);
+            //pacientes.Add(p2);
+            //pacientes.Add(p3);
+            //pacientes.Add(p4);
+            //servicios.Add(s1);
+            //servicios.Add(s2);
+            //servicios.Add(s3);
+
+            //Form1.pLP(pacientes);
+            //Form1.pLS(servicios);
         }
 
         private void btnOpciones_Click(object sender, EventArgs e)
@@ -44,67 +99,107 @@ namespace sentirse_Bien
 
             if (tableLayoutPanel1.Visible)
             {
-                tableLayoutPanel1.Visible = false;
-                button1.Visible = false;
-                button2.Visible = false;
-                button3.Visible = false;
-                button4.Visible = false;
-                btnService.Visible = false;
-                button6.Visible = true;
-                button7.Visible = false;
-                listBox1.Visible = false;
-                listBox2.Visible = false;
-                listBox3.Visible = false;
-                //lbl1.Visible = false;
-                //label7.Visible = false;
-                //lblTurno.Visible = false;
-                //lbl2.Visible = false;
-                //textBox1.Visible = false;
-                //textBox2.Visible = false;
-                //textBox3.Visible = false;
-                //textBox4.Visible = false;
+                if (tipoUser == "admin")
+                {
+                    tableLayoutPanel1.Visible = false;
+                    button1.Visible = false;
+                    button2.Visible = false;
+                    button3.Visible = false;
+                    button4.Visible = false;
+                    btnService.Visible = false;
+                    button6.Visible = true;
+                    button7.Visible = false;
+                    listBox1.Visible = false;
+                    listBox2.Visible = false;
+                    listBox3.Visible = false;
+                    btnBorrar.Visible = false;
+                    panel8.Visible = false;
+                    label9.Text = "Spa Sentirse bien... \r\nRelájate y revive en nuestro oasis de paz\r\n-masajes tratamientos cuidados-";
+                }
+                else if (tipoUser == "secretaria")
+                {
+                    tableLayoutPanel1.Visible = false;
+                    button1.Visible = false;//profesional
+                    button2.Visible = false;
+                    button3.Visible = false;
+                    button4.Visible = false;
+                    btnService.Visible = false;//servicio
+                    button6.Visible = true;
+                    button7.Visible = false;
+                    listBox1.Visible = false;
+                    listBox2.Visible = false;
+                    listBox3.Visible = false;
+                    btnBorrar.Visible = false;
+                    panel8.Visible = false;
+                    label9.Text = "Spa Sentirse bien... \r\nRelájate y revive en nuestro oasis de paz\r\n-masajes tratamientos cuidados-";
+                }
+
             }
 
             else
             {
-                tableLayoutPanel1.Visible = true;
-                button1.Visible = true;
-                button2.Visible = true;
-                button3.Visible = true;
-                button4.Visible = true;
-                btnService.Visible = true;
-                button6.Visible = false;
-                button7.Visible = true;
-                listBox1.Visible = true;
-                listBox2.Visible = true;
-                listBox3.Visible = true;
-                //label6.Visible = true;
-                //label7.Visible = true;
-                //label8.Visible = true;
-                //label9.Visible = true;
-                //textBox1.Visible = true;
-                //textBox2.Visible = true;
-                //textBox3.Visible = true;
-                //textBox4.Visible = true;
+                if (tipoUser == "admin")
+                {
+                    tableLayoutPanel1.Visible = true;
+                    button1.Visible = true;
+                    button2.Visible = true;
+                    button3.Visible = true;
+                    button4.Visible = true;
+                    btnService.Visible = true;
+                    button6.Visible = false;
+                    button7.Visible = true;
+                    listBox1.Visible = true;
+                    listBox2.Visible = true;
+                    listBox3.Visible = true;
+                    btnBorrar.Visible = true;
+                    panel8.Visible = true;
+                    label9.Text = "Spa Sentirse bien... \r\nRelájate y revive en nuestro oasis de paz\r\n";
+                }
+                else if (tipoUser == "secretaria")
+                {
+                    tableLayoutPanel1.Visible = true;
+                    //button1.Visible = true;
+                    button2.Visible = true;
+                    button3.Visible = true;
+                    button4.Visible = true;
+                    //btnService.Visible = true;
+                    button6.Visible = false;
+                    button7.Visible = true;
+                    listBox1.Visible = true;
+                    listBox2.Visible = true;
+                    listBox3.Visible = true;
+                    btnBorrar.Visible = true;
+                    panel8.Visible = true;
+                    label9.Text = "Spa Sentirse bien... \r\nRelájate y revive en nuestro oasis de paz\r\n";
+                }
+
             }
 
 
         }
 
-        private void btnProfesional(object sender, EventArgs e)//btn profesionales
+        private void btnProfesional(object sender, EventArgs e)//btn nombreProfesionales
         {
             ctrloff();
             ctrlProfesional = true;
             limpiarListBox();
 
-            if (profesionales.Count != 0)
+            listBox1.Items.Add(" Lista de Profesionales: ");
+            listBox1.Items.Add("");
+
+            if (servicios.Count != 0)
             {
+                HashSet<string> profesionales = new HashSet<string>();
+                foreach (var serv in servicios)
                 {
-                    foreach (var p in profesionales)
-                    {
-                        listBox1.Items.Add(p.nombre);
-                    }
+                    profesionales.Add(serv.profesional.nombre);
+
                 }
+                foreach (var pro in profesionales)
+                {
+                    listBox1.Items.Add(pro);
+                }
+                if (p.nombre != "") listBox1.Items.Add(p.nombre + " *sin servicio");
             }
 
         }
@@ -116,11 +211,13 @@ namespace sentirse_Bien
             limpiarListBox();
             listBox1.Items.Add("Lista de Servicios: ");
             listBox1.Items.Add("");
-            if (pacientes.Count != 0)
+            if (servicios.Count != 0)
             {
                 foreach (var p in servicios)
                 {
                     listBox1.Items.Add(p.nombreServicio);
+
+
                 }
             }
         }
@@ -136,12 +233,16 @@ namespace sentirse_Bien
                 foreach (var p in pacientes)
                 {
                     listBox1.Items.Add(p.nombre);
+                    listBox1.Items.Add("edad: " + p.edad);
+                    listBox1.Items.Add("");
+
                 }
             }
         }
 
         private void btnTurno(object sender, EventArgs e)// btn turnos
         {
+            int nro = 1;
             ctrloff();
             ctrlTurno = true;
             limpiarListBox();
@@ -149,33 +250,49 @@ namespace sentirse_Bien
             listBox1.Items.Add("");
             if (pacientes.Count != 0)
             {
+
                 foreach (var p in pacientes)
                 {
-                    listBox1.Items.Add(p.nombre);
-                    foreach (var t in p.turnos)
+
+                    int j = 0;
+                    if (p.turnos.Count > 0)
                     {
-                        listBox1.Items.Add(t.ToString());
+                        listBox1.Items.Add(p.nombre);
+                        foreach (Turno t in p.turnos)
+                        {
+                            //listBox1.Items.Add(nro);
+                            listBox1.Items.Add(t.inicio.Day.ToString() + "/" + t.inicio.Month.ToString() + "/" + t.inicio.Year.ToString());
+                            listBox1.Items.Add(t.inicio.Hour.ToString() + ":00");
+                            nro++;
+                            for (j = 0; j < t.servicios.Count; j++)
+                            {
+                                listBox1.Items.Add(t.servicios[j].nombreServicio);
+                            }
+
+                        }
+                        listBox1.Items.Add("-----------------");
                     }
-                    listBox1.Items.Add("-----------------");
+
                 }
             }
         }
 
 
-        private void btnAgregar(object sender, EventArgs e)// agregar profesionales, paciente y turno
+        private void btnAgregar(object sender, EventArgs e)// agregar nombreProfesionales, paciente y turno
         {
             if (ctrlProfesional)
             {
                 string n, esp;
-                Profesional p;
+                //Profesional p;
                 NvoProfesional nvoProfesional = new NvoProfesional();
                 nvoProfesional.ShowDialog();
                 if (nvoProfesional.DialogResult == DialogResult.OK)
                 {
                     n = nvoProfesional.n;
                     esp = nvoProfesional.esp;
-                    p = new Profesional(n, esp);
-                    profesionales.Add(p);
+                    p = new Profesional(n);
+                    //profesionales.Add(p);
+
 
                 }
                 else
@@ -184,6 +301,8 @@ namespace sentirse_Bien
                 }
                 nvoProfesional.Close();
                 btnProfesional(sender, e);
+
+
             }
             if (ctrlPaciente)
             {
@@ -211,15 +330,21 @@ namespace sentirse_Bien
             {
                 string nombreServicio;
                 decimal precio;
-
-                TimeSpan duracion;
-                NvoServicio nvoServicio = new NvoServicio();
-                nvoServicio.ShowDialog();
                 Servicio s;
+                TimeSpan duracion;
+                Profesional pro;
+
+                NvoServicio nvoServicio = new NvoServicio(p, servicios);
+                nvoServicio.ShowDialog();
+
                 if (nvoServicio.DialogResult == DialogResult.OK)
                 {
-                    
-                    s = new Servicio(nombreProfesional, nombreServicio, duracion, precio);
+                    nombreServicio = nvoServicio.nombreServicio;
+                    duracion = nvoServicio.duracion;
+                    precio = nvoServicio.precio;
+                    if (nvoServicio.nombreProfesional == p.nombre) { pro = new Profesional(p.nombre); p.nombre = ""; }
+                    else { pro = servicios[nvoServicio.index].profesional; }
+                    s = new Servicio(pro, nombreServicio, duracion, precio);
                     servicios.Add(s);
 
                 }
@@ -228,25 +353,31 @@ namespace sentirse_Bien
                     //MessageBox.Show("Error");
                 }
                 nvoServicio.Close();
-                btnPaciente(sender, e);
-
-
-
-
                 btnService_Click(sender, e);
             }
             if (ctrlTurno)
             {
-                NvoTurno nvoTurno = new NvoTurno();
+                DateTime _inicio, _fin;
+                Servicio _s;
+                NvoTurno nvoTurno = new NvoTurno(pacientes, servicios);
                 nvoTurno.ShowDialog();
+                if (nvoTurno.DialogResult == DialogResult.OK)
+                {
+                    _s = nvoTurno.servicios[nvoTurno.index3];
+                    _inicio = new DateTime(nvoTurno.dia.Year, nvoTurno.dia.Month, nvoTurno.dia.Day, nvoTurno.index1, 0, 0);
+                    _fin = _inicio + _s.duracion;
+                    Turno t = new Turno(_inicio, _s);
+                    pacientes[nvoTurno.index2].turnos.Add(t);
+                    nvoTurno.Close();
+
+                }
+
+
                 btnTurno(sender, e);
+
             }
-            //ctrlAgregar = true;
-            //lbl1.Visible = true;
-            //label7.Visible = true;
-            //label8.Visible = true;
-            //lbl2.Visible = true;
-            //btnListarTodo(sender, e);
+            Form1.pLP(pacientes);
+            Form1.pLS(servicios);
 
         }
 
@@ -263,15 +394,21 @@ namespace sentirse_Bien
             limpiarListBox();
             listBox1.Items.Add(" Lista de Profesionales: ");
             listBox1.Items.Add("");
-            if (profesionales.Count != 0)
+            if (servicios.Count != 0)
             {
+                HashSet<string> profesionales = new HashSet<string>();
+                foreach (var serv in servicios)
                 {
-                    foreach (var p in profesionales)
-                    {
-                        listBox1.Items.Add(p.nombre);
-                    }
+                    profesionales.Add(serv.profesional.nombre);
+
                 }
+                foreach (var pro in profesionales)
+                {
+                    listBox1.Items.Add(pro);
+                }
+                if (p.nombre != "") listBox1.Items.Add(p.nombre + " *sin servicio");
             }
+
             listBox2.Items.Add("Lista de Pacientes: ");
             listBox2.Items.Add("");
             if (pacientes.Count != 0)
@@ -287,45 +424,172 @@ namespace sentirse_Bien
             {
                 foreach (var p in pacientes)
                 {
-                    listBox3.Items.Add(p.nombre);
-                    foreach (var t in p.turnos)
+                    //listBox3.Items.Add(p.nombre);
+                    int j = 0;
+                    foreach (Turno t in p.turnos)
                     {
-                        listBox3.Items.Add(t.ToString());
+                        listBox3.Items.Add(t.inicio.Day.ToString() + "/" + t.inicio.Month.ToString() + "/" + t.inicio.Year.ToString());
+                        listBox3.Items.Add(t.inicio.Hour.ToString() + ":00");
+                        listBox3.Items.Add("-----------------");
+
                     }
-                    listBox3.Items.Add("-----------------");
                 }
             }
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-            string prof, pac, servicio, aux;
-            string[] aux1 = new string[6];
-            int[] fecha = new int[6];
-            DateTime dia;
-            //prof = textBox1.Text;
-            //servicio = textBox2.Text;
-            //pac = textBox3.Text;
-            //aux = textBox4.Text;
-            //aux1 = aux.Split(',');
 
-            for (int i = 0; i < 6; i++)
+        public void btnBorrar_Click(object sender, EventArgs e)
+        {
+            int indice = -1;
+            string nombre = string.Empty;
+
+            if (ctrlProfesional && servicios.Count > 0)
             {
-                fecha[i] = int.Parse(aux1[i]);
+                indice = listBox1.SelectedIndex;
+                if (indice > 1) nombre = listBox1.SelectedItem.ToString();
+                for (int i = 0; i < servicios.Count; i++)
+                {
+                    if (servicios[i].profesional.nombre == nombre)
+                    {
+                        servicios.Remove(servicios[i]);
+                    }
+                    else if (nombre == (p.nombre + " *sin servicio")) p = new Profesional("");
+                    //MessageBox.Show(p.nombre);
+                }
+
+                btnProfesional(sender, e);
+
 
             }
-            dia = new DateTime(fecha[0], fecha[1], fecha[2], fecha[3], fecha[4], fecha[5]);
+            if (ctrlPaciente && pacientes.Count > 0)
+            {
+
+                indice = listBox1.SelectedIndex;
+                if (indice > 1) nombre = listBox1.SelectedItem.ToString();
+                for (int i = 0; i < pacientes.Count; i++)
+                {
+                    if (pacientes[i].nombre == nombre)
+                    {
+                        pacientes.Remove(pacientes[i]);
+                    }
+
+                }
+
+                btnPaciente(sender, e);
+            }
+            if (ctrlServicio && servicios.Count > 0)//================================================================================<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            {
+                Turno t;
+                indice = listBox1.SelectedIndex;
+                if (indice > 1) nombre = listBox1.SelectedItem.ToString();
+                for (int i = 0; i < servicios.Count; i++)
+                {
+                    if (servicios[i].nombreServicio == nombre)
+                    {
+                        servicios.Remove(servicios[i]);
+
+                    }
+
+                }
+                //if (pacientes.Count > 0)
+                //{
+                //    for (int i = 0; i < pacientes.Count; i++)
+                //    {
+                //        if (pacientes[i].turnos.Count > 0)
+                //        {
+                //            for (int j = 0; j < pacientes[i].turnos.Count; j++)
+                //            {
+                //                MessageBox.Show("turnos"+ pacientes[i].turnos[j].servicios[0].nombreServicio);
+                //                if (pacientes[i].turnos[j].servicios.Count > 0)
+                //                {
+                //                    for (int k = 0; k < pacientes[i].turnos[j].servicios.Count; k++)
+                //                    {
+                //                       if (nombre == pacientes[i].turnos[j].servicios[k].nombreServicio)
+                //                        {
+                //                          t = pacientes[i].turnos[j];
+                //                            pacientes[i].turnos.Remove(t);
+                //                        }
+                //                    }
+                //                }
+                //            }
+                //        }
 
 
-            //profesionales.Add(new Profesional(prof,servicio));// ojo se puede agregar profesionales nuevo o no
-            //pacientes.Add
+                //    }
+                //}
 
-            btnListarTodo(sender, e);
+
+                btnService_Click(sender, e);
+            }
+            if (ctrlTurno && pacientes.Count > 0)
+            {
+                int indicador1 = -1;
+                DateTime turno1;
+                indice = listBox1.SelectedIndex;
+                if (!ctrlBorrar)
+                {
+                    //indice = listBox1.SelectedIndex;
+                    //MessageBox.Show("indice: "+indice.ToString());
+                    if (indice > 1) nombre = listBox1.SelectedItem.ToString();
+                    for (int i = 0; i < pacientes.Count; i++)
+                    {
+                        if (pacientes[i].nombre == nombre)
+                        {
+                            for (int j = 0; j < pacientes[i].turnos.Count; j++)
+                            {
+                                listBox2.Items.Add(pacientes[i].turnos[j].inicio);
+                                auxNombre = pacientes[i].nombre;
+                            }
+
+                        }
+                    }
+                    ctrlBorrar = true;
+                    if (indice == -1) ctrlBorrar = false;
+                    if (listBox2.Items.Count == 0) ctrlBorrar = false;
+                }
+                else
+                {
+                    indicador1 = listBox2.SelectedIndex;
+                    //MessageBox.Show("indicador1: "+indicador1.ToString());
+                    if (indicador1 > -1)
+                    {
+                        foreach (Paciente p in pacientes)
+                        {
+                            if (auxNombre == p.nombre)
+                            {
+                                p.turnos.Remove(p.turnos[indicador1]);
+                                auxNombre = string.Empty;
+                            }
+                        }
+                        btnTurno(sender, e);
+
+                        listBox2.Items.Clear();
+                        for (int i = 0; i < pacientes.Count; i++)
+                        {
+                            if (pacientes[i].nombre == nombre)
+                            {
+                                for (int j = 0; j < pacientes[i].turnos.Count; j++)
+                                {
+                                    listBox2.Items.Add(pacientes[i].turnos[j].inicio);
+                                }
+
+                            }
+                        }
+
+                        ctrlBorrar = false;
+                    }
+
+
+                }
+
+
+
+
+            }
+            Form1.pLP(pacientes);
+            Form1.pLS(servicios);
         }
-        private void apagarTexBox()
-        {
 
-        }
         private void ctrloff()
         {
             ctrlProfesional = false;
@@ -333,6 +597,7 @@ namespace sentirse_Bien
             ctrlPaciente = false;
             ctrlTurno = false;
             ctrlAgregar = false;
+            ctrlBorrar = false;
         }
         private void limpiarListBox()
         {
@@ -341,6 +606,36 @@ namespace sentirse_Bien
             listBox3.Items.Clear();
         }
 
-        
+        private void btnPdf_Click(object sender, EventArgs e)
+        {
+            if (ctrlProfesional)
+            {
+                if (servicios.Count != 0)
+                {
+                    HashSet<string> profesionales = new HashSet<string>();
+                    foreach (var serv in servicios)
+                    {
+                        profesionales.Add(serv.profesional.nombre);
+
+                    }
+                    if (p.nombre != "") profesionales.Add(p.nombre + " *sin servicio");
+                    List<string> list = profesionales.ToList();
+                    //pdf(list);
+                }
+
+            }
+            else if (ctrlPaciente)
+            {
+
+            }
+            else if (ctrlTurno) 
+            {
+                
+            }
+            else if (ctrlServicio) 
+            {
+
+            }
+        }
     }
 }

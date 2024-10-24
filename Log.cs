@@ -12,12 +12,18 @@ namespace sentirse_Bien
 {
     public partial class Log : Form
     {
-        string user = "";
-        string pass = "";
+        string user = "admin";
+        string pass = "admin";
+        string user1 = "secretaria";
+        string pass1 = "secretaria";
+        string user2 = "";
+        string pass2 = "";
         int count = 0;
         public Log()
         {
             InitializeComponent();
+            //this.FormBorderStyle = FormBorderStyle.None;
+            //this.WindowState = FormWindowState.Maximized;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -28,15 +34,16 @@ namespace sentirse_Bien
             lblUserPass.Text = "";
             if (count < 2)
             {
-                if (usuario == user && pasword == pass)
+                if ((usuario == user && pasword == pass) || (usuario == user1 && pasword == pass1) || (usuario == user2 && pasword == pass2))
                 {
-                    Form1 form = new Form1();
+                    usuario = "admin";
+                    Form1 form = new Form1(usuario);
                     this.Hide();
                     form.ShowDialog();
-                    
+
                     Application.Exit();
-                    
-                    
+
+
                 }
                 else
                 {
@@ -46,10 +53,29 @@ namespace sentirse_Bien
                     lblUserPass.Text = "Usuario o Contraseña incorrectos";
 
                 }
-                
-            } else Application.Exit();
-            
 
+            }
+            else Application.Exit();
+
+
+        }
+
+        private void btnNvoUser_Click(object sender, EventArgs e)
+        {
+            string usuario=string.Empty;
+            NvoUser nvoUser = new NvoUser();
+            this.Hide();
+            nvoUser.ShowDialog();
+            if (nvoUser.control == true) 
+            {
+                usuario = nvoUser.user;
+                //Application.Exit();
+                Form1 form = new Form1(usuario);
+                this.Hide();
+                form.ShowDialog();
+                
+            }
+            Application.Exit();
         }
     }
 }

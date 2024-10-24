@@ -1,6 +1,6 @@
 ﻿namespace sentirse_Bien
 {
-    partial class Log
+    partial class NvoUser
     {
         /// <summary>
         /// Required designer variable.
@@ -34,24 +34,25 @@
             label1 = new Label();
             label2 = new Label();
             lblUserPass = new Label();
-            btnNvoUser = new Button();
+            label3 = new Label();
+            textBox3 = new TextBox();
             SuspendLayout();
             // 
             // button1
             // 
             button1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            button1.Location = new Point(216, 289);
+            button1.Location = new Point(327, 454);
             button1.Name = "button1";
             button1.Size = new Size(1371, 58);
             button1.TabIndex = 0;
-            button1.Text = "Ingresar";
+            button1.Text = "Registrarse";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
             // textBox1
             // 
             textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            textBox1.Location = new Point(216, 114);
+            textBox1.Location = new Point(327, 118);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(1371, 39);
             textBox1.TabIndex = 1;
@@ -59,7 +60,7 @@
             // textBox2
             // 
             textBox2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            textBox2.Location = new Point(216, 206);
+            textBox2.Location = new Point(327, 210);
             textBox2.Name = "textBox2";
             textBox2.PasswordChar = '*';
             textBox2.Size = new Size(1371, 39);
@@ -95,30 +96,39 @@
             lblUserPass.Size = new Size(0, 21);
             lblUserPass.TabIndex = 5;
             // 
-            // btnNvoUser
+            // label3
             // 
-            btnNvoUser.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnNvoUser.Location = new Point(216, 358);
-            btnNvoUser.Name = "btnNvoUser";
-            btnNvoUser.Size = new Size(1371, 58);
-            btnNvoUser.TabIndex = 6;
-            btnNvoUser.Text = "Nuevo Usuario";
-            btnNvoUser.UseVisualStyleBackColor = true;
-            btnNvoUser.Click += btnNvoUser_Click;
+            label3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label3.AutoSize = true;
+            label3.Location = new Point(33, 309);
+            label3.Name = "label3";
+            label3.Size = new Size(243, 32);
+            label3.TabIndex = 6;
+            label3.Text = "Confirmar contraseña";
             // 
-            // Log
+            // textBox3
+            // 
+            textBox3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            textBox3.Location = new Point(327, 302);
+            textBox3.Name = "textBox3";
+            textBox3.PasswordChar = '*';
+            textBox3.Size = new Size(1371, 39);
+            textBox3.TabIndex = 7;
+            // 
+            // NvoUser
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1871, 888);
-            Controls.Add(btnNvoUser);
+            Controls.Add(textBox3);
+            Controls.Add(label3);
             Controls.Add(lblUserPass);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
             Controls.Add(button1);
-            Name = "Log";
+            Name = "NvoUser";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Spa Sentirse Bien";
             ResumeLayout(false);
@@ -126,13 +136,13 @@
         }
 
         #endregion
-
         private Button button1;
         private TextBox textBox1;
         private TextBox textBox2;
         private Label label1;
         private Label label2;
         private Label lblUserPass;
-        private Button btnNvoUser;
+        private Label label3;
+        private TextBox textBox3;
     }
 }

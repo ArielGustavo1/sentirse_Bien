@@ -24,7 +24,7 @@ namespace sentirse_Bien
             if (textBox1.Text != "")
             {
                 n=textBox1.Text;
-                esp = textBox2.Text;
+                esp = "";
                 this.DialogResult=DialogResult.OK;
                 //aceptar = true;
             }

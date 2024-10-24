@@ -28,12 +28,126 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "NvoTurno";
+            monthCalendar1 = new MonthCalendar();
+            btnAceptar = new Button();
+            comboBox1 = new ComboBox();
+            label1 = new Label();
+            label2 = new Label();
+            comboBox2 = new ComboBox();
+            comboBox3 = new ComboBox();
+            label3 = new Label();
+            label4 = new Label();
+            SuspendLayout();
+            // 
+            // monthCalendar1
+            // 
+            monthCalendar1.Location = new Point(518, 18);
+            monthCalendar1.Name = "monthCalendar1";
+            monthCalendar1.TabIndex = 1;
+            monthCalendar1.DateChanged += monthCalendar1_DateChanged;
+            // 
+            // btnAceptar
+            // 
+            btnAceptar.Location = new Point(655, 520);
+            btnAceptar.Name = "btnAceptar";
+            btnAceptar.Size = new Size(150, 46);
+            btnAceptar.TabIndex = 2;
+            btnAceptar.Text = "Aceptar";
+            btnAceptar.UseVisualStyleBackColor = true;
+            btnAceptar.Click += btnAceptar_Click;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(12, 160);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(400, 40);
+            comboBox1.TabIndex = 3;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 442);
+            label1.Name = "label1";
+            label1.Size = new Size(78, 32);
+            label1.TabIndex = 4;
+            label1.Text = "label1";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(258, 442);
+            label2.Name = "label2";
+            label2.Size = new Size(78, 32);
+            label2.TabIndex = 5;
+            label2.Text = "label2";
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(12, 56);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(400, 40);
+            comboBox2.TabIndex = 6;
+            comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
+            // 
+            // comboBox3
+            // 
+            comboBox3.FormattingEnabled = true;
+            comboBox3.Location = new Point(12, 270);
+            comboBox3.Name = "comboBox3";
+            comboBox3.Size = new Size(400, 40);
+            comboBox3.TabIndex = 7;
+            comboBox3.SelectedIndexChanged += comboBox3_SelectedIndexChanged;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(258, 534);
+            label3.Name = "label3";
+            label3.Size = new Size(97, 32);
+            label3.TabIndex = 9;
+            label3.Text = "Servicio";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(12, 534);
+            label4.Name = "label4";
+            label4.Size = new Size(103, 32);
+            label4.TabIndex = 8;
+            label4.Text = "Paciente";
+            // 
+            // NvoTurno
+            // 
+            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(856, 619);
+            Controls.Add(label3);
+            Controls.Add(label4);
+            Controls.Add(comboBox3);
+            Controls.Add(comboBox2);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(comboBox1);
+            Controls.Add(btnAceptar);
+            Controls.Add(monthCalendar1);
+            Name = "NvoTurno";
+            Text = "NvoTurno";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+        private MonthCalendar monthCalendar1;
+        private Button btnAceptar;
+        private ComboBox comboBox1;
+        private Label label1;
+        private Label label2;
+        private ComboBox comboBox2;
+        private ComboBox comboBox3;
+        private Label label3;
+        private Label label4;
     }
 }

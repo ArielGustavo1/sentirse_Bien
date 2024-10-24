@@ -47,6 +47,7 @@
             btnAceptar.TabIndex = 0;
             btnAceptar.Text = "Aceptar";
             btnAceptar.UseVisualStyleBackColor = true;
+            btnAceptar.Click += btnAceptar_Click;
             // 
             // label1
             // 
@@ -86,9 +87,9 @@
             label3.AutoSize = true;
             label3.Location = new Point(51, 217);
             label3.Name = "label3";
-            label3.Size = new Size(110, 32);
+            label3.Size = new Size(172, 32);
             label3.TabIndex = 6;
-            label3.Text = "Duración";
+            label3.Text = "Duración [min]";
             // 
             // textBox2
             // 

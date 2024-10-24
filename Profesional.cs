@@ -6,17 +6,21 @@ using System.Threading.Tasks;
 
 namespace sentirse_Bien
 {
-    internal class Profesional
+    public class Profesional
     {
         public string nombre {get;set;}
-        public string especialidad {get;set;}// lista de especialidad: belleza, masajes o tratamientos faciales, tratamientos corporales
+        //public string especialidad {get;set;}// lista de especialidad: belleza, masajes o tratamientos faciales, tratamientos corporales
 
         // lista de objetos servicios: id, nombre, precio, despcripción, duración y disponibilidad.
         //public List<Paciente> paciente {get;set;}
-        public Profesional(string n, string e) 
+        public Profesional()
+        {
+            nombre = "";
+        }
+        public Profesional(string n) 
         {
             nombre = n;
-            especialidad = e;
+            //especialidad = e;
             //paciente = new List<Paciente>();
         }
     }
