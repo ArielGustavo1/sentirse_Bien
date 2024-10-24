@@ -6,17 +6,17 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
-//using iText.Kernel.Pdf;
-//using iText.Layout.Element;
+using iText.Kernel.Pdf;
+using iText.Layout.Element;
 using System;
 using System.Collections.Generic;
 using System.IO;
-//using iText.Layout;
+using iText.Layout;
 
 
 namespace sentirse_Bien
 {
-    public partial class Form1
+    public partial class Formx
     {
         // Crear una paciente y una lista de personas
         //Paciente paciente = new paciente { Nombre = "Juan", Edad = 30 };
@@ -27,7 +27,10 @@ namespace sentirse_Bien
         //};
 
         // Serializar y guardar
-        
+        public Formx()
+        {
+
+        }
         public static void pP(Paciente paciente)
         {
             PersistirObjetoPac(paciente, "paciente.json");
@@ -84,32 +87,32 @@ namespace sentirse_Bien
 
 
 
-        //static void pdf(List<string> datos)
-        //{
+        public static void archivoPdf(List<string> datos, string nombreArchivo)
+        {
+            string pdfPath = @"D:\TUP\\Cursado\Metodologia de sistemas\Clonado\";
 
+            
 
-        //    string rutaArchivo = "Listado.pdf";
+            using (PdfWriter writer = new PdfWriter(pdfPath+nombreArchivo))
+            {
 
-        //    // Crear un nuevo documento PDF
-        //    using (PdfWriter writer = new PdfWriter(rutaArchivo))
-        //    {
-        //        using (PdfDocument pdf = new PdfDocument(writer))
-        //        {
-        //            Document document = new Document(pdf);
+            
+            using (PdfDocument pdf = new PdfDocument(writer))
+            {
+                Document document = new Document(pdf);
 
-        //            // Agregar cada línea de la lista al PDF
-        //            foreach (var linea in datos)
-        //            {
-        //                document.Add(new Paragraph(linea));
-        //            }
+                // Agregar cada string como un párrafo al PDF
+                foreach (var item in datos)
+                {
+                    document.Add(new Paragraph(item));
+                }
 
-        //            document.Close();
-        //        }
-        //    }
-
-        //    Console.WriteLine("PDF generado exitosamente en " + rutaArchivo);
-        //}
-
+                document.Close();
+            }
+            }
+            
+        }
+        
 
 
     }

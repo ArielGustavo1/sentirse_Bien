@@ -219,6 +219,7 @@
             btnOpciones.Anchor = AnchorStyles.Top;
             btnOpciones.BackColor = Color.MediumSeaGreen;
             btnOpciones.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnOpciones.Image = Properties.Resources.logo_chico;
             btnOpciones.Location = new Point(38, 43);
             btnOpciones.Name = "btnOpciones";
             btnOpciones.Size = new Size(349, 200);

@@ -28,8 +28,8 @@ namespace sentirse_Bien
             servicios = new List<Servicio>();
             tableLayoutPanel1.Visible = false;
             tipoUser = u;
-            pacientes = Form1.LeerListaP(@"D:\TUP\Cursado\Metodologia de sistemas\app_escritorio\sentirse_Bien\bin\Debug\net8.0-windows\listaPacientes.json");
-            servicios = Form1.LeerListaS(@"D:\TUP\Cursado\Metodologia de sistemas\app_escritorio\sentirse_Bien\bin\Debug\net8.0-windows\listaServicios.json");
+            pacientes = Formx.LeerListaP(@"D:\TUP\Cursado\Metodologia de sistemas\app_escritorio\sentirse_Bien\bin\Debug\net8.0-windows\listaPacientes.json");
+            servicios = Formx.LeerListaS(@"D:\TUP\Cursado\Metodologia de sistemas\app_escritorio\sentirse_Bien\bin\Debug\net8.0-windows\listaServicios.json");
         }
 
         private void Form1_Load(object sender, EventArgs e)// carga de datos temporales==========<>==================borrar despues de las pruebas
@@ -114,6 +114,7 @@ namespace sentirse_Bien
                     listBox3.Visible = false;
                     btnBorrar.Visible = false;
                     panel8.Visible = false;
+                    btnPdf.Visible = false;
                     label9.Text = "Spa Sentirse bien... \r\nRelájate y revive en nuestro oasis de paz\r\n-masajes tratamientos cuidados-";
                 }
                 else if (tipoUser == "secretaria")
@@ -131,6 +132,7 @@ namespace sentirse_Bien
                     listBox3.Visible = false;
                     btnBorrar.Visible = false;
                     panel8.Visible = false;
+                    btnPdf.Visible = false;
                     label9.Text = "Spa Sentirse bien... \r\nRelájate y revive en nuestro oasis de paz\r\n-masajes tratamientos cuidados-";
                 }
 
@@ -153,6 +155,7 @@ namespace sentirse_Bien
                     listBox3.Visible = true;
                     btnBorrar.Visible = true;
                     panel8.Visible = true;
+                    btnPdf.Visible = true;
                     label9.Text = "Spa Sentirse bien... \r\nRelájate y revive en nuestro oasis de paz\r\n";
                 }
                 else if (tipoUser == "secretaria")
@@ -170,6 +173,7 @@ namespace sentirse_Bien
                     listBox3.Visible = true;
                     btnBorrar.Visible = true;
                     panel8.Visible = true;
+                    btnPdf.Visible = true;
                     label9.Text = "Spa Sentirse bien... \r\nRelájate y revive en nuestro oasis de paz\r\n";
                 }
 
@@ -184,7 +188,7 @@ namespace sentirse_Bien
             ctrlProfesional = true;
             limpiarListBox();
 
-            listBox1.Items.Add(" Lista de Profesionales: ");
+            listBox1.Items.Add("Lista de Profesionales: ");
             listBox1.Items.Add("");
 
             if (servicios.Count != 0)
@@ -376,8 +380,8 @@ namespace sentirse_Bien
                 btnTurno(sender, e);
 
             }
-            Form1.pLP(pacientes);
-            Form1.pLS(servicios);
+            Formx.pLP(pacientes);
+            Formx.pLS(servicios);
 
         }
 
@@ -586,8 +590,8 @@ namespace sentirse_Bien
 
 
             }
-            Form1.pLP(pacientes);
-            Form1.pLS(servicios);
+            Formx.pLP(pacientes);
+            Formx.pLS(servicios);
         }
 
         private void ctrloff()
@@ -608,19 +612,28 @@ namespace sentirse_Bien
 
         private void btnPdf_Click(object sender, EventArgs e)
         {
+            
             if (ctrlProfesional)
             {
                 if (servicios.Count != 0)
                 {
+                    //MessageBox.Show("servicios");
                     HashSet<string> profesionales = new HashSet<string>();
+                    
                     foreach (var serv in servicios)
                     {
                         profesionales.Add(serv.profesional.nombre);
 
                     }
                     if (p.nombre != "") profesionales.Add(p.nombre + " *sin servicio");
-                    List<string> list = profesionales.ToList();
-                    //pdf(list);
+                    List<string> list = new List<string>();
+                    list.Add("Profesionales: \n\n");
+                    foreach(string prof in profesionales)
+                    {
+                        list.Add(prof.ToString());
+                    }
+                    
+                    Formx.archivoPdf(list,"profesionales.pdf");
                 }
 
             }
