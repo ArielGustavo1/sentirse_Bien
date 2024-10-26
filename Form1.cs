@@ -5,6 +5,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.Json;
 using iText.Layout.Element;
+using System.Diagnostics.Eventing.Reader;
 
 namespace sentirse_Bien
 {
@@ -20,7 +21,7 @@ namespace sentirse_Bien
         bool ctrlAgregar = false, ctrlPaciente = false, ctrlProfesional = false, ctrlTurno = false, ctrlServicio = false, ctrlBorrar = false;
 
 
-        public Form1(string u)
+        public Form1(string user, string pass)
         {
             InitializeComponent();
             //profesionales = new List<Profesional>();
@@ -28,15 +29,31 @@ namespace sentirse_Bien
             pacientes = new List<Paciente>();
             servicios = new List<Servicio>();
             tableLayoutPanel1.Visible = false;
-            tipoUser = u;
+            if (user == "admin")
+            {
+                tipoUser = user;
+            }
+            else if (user == "secretaria")
+            {
+                tipoUser = user;
+            }
+            else if(user == "")//para pruebas
+            {
+                tipoUser = "admin";
+            }
+            else
+            {
+
+            }
+            
             pacientes = Formx.LeerListaP(@"D:\TUP\Cursado\Metodologia de sistemas\Clonado\bin\Debug\net8.0-windows\listaPacientes.json");
             servicios = Formx.LeerListaS(@"D:\TUP\Cursado\Metodologia de sistemas\Clonado\bin\Debug\net8.0-windows\listaServicios.json");
         }
 
-        private void Form1_Load(object sender, EventArgs e)// carga de datos temporales==========<>==================borrar despues de las pruebas
+        private void Form1_Load(object sender, EventArgs e)
         {
-            pacientes = Formx.LeerListaP(@"D:\TUP\Cursado\Metodologia de sistemas\Clonado\bin\Debug\net8.0-windows\listaPacientes.json");
-            servicios = Formx.LeerListaS(@"D:\TUP\Cursado\Metodologia de sistemas\Clonado\bin\Debug\net8.0-windows\listaServicios.json");
+            //pacientes = Formx.LeerListaP(@"D:\TUP\Cursado\Metodologia de sistemas\Clonado\bin\Debug\net8.0-windows\listaPacientes.json");
+            //servicios = Formx.LeerListaS(@"D:\TUP\Cursado\Metodologia de sistemas\Clonado\bin\Debug\net8.0-windows\listaServicios.json");
             /**pantalla completa y tamaño de letra. Registro de usuario. registro de pagos. pdf. usuario saca turno, poder registrarse nvo user*/
 
             //string prof1 = "Felicidad";
@@ -118,6 +135,8 @@ namespace sentirse_Bien
                     btnBorrar.Visible = false;
                     panel8.Visible = false;
                     btnPdf.Visible = false;
+                    ctrloff();
+                    limpiarListBox();
                     label9.Text = "Spa Sentirse bien... \r\nRelájate y revive en nuestro oasis de paz\r\n-masajes tratamientos cuidados-";
                 }
                 else if (tipoUser == "secretaria")
@@ -136,6 +155,8 @@ namespace sentirse_Bien
                     btnBorrar.Visible = false;
                     panel8.Visible = false;
                     btnPdf.Visible = false;
+                    ctrloff();
+                    limpiarListBox();
                     label9.Text = "Spa Sentirse bien... \r\nRelájate y revive en nuestro oasis de paz\r\n-masajes tratamientos cuidados-";
                 }
 
@@ -618,57 +639,123 @@ namespace sentirse_Bien
             
             if (ctrlProfesional)
             {
+                HashSet<string> listaDeProfesionales = new HashSet<string>();
+                List<string> list = new List<string>();
                 if (servicios.Count != 0)
                 {
                     //MessageBox.Show("servicios");
-                    HashSet<string> profesionales = new HashSet<string>();
-                    
+                    listaDeProfesionales.Add("Lista de Profesionales: ");
+                    listaDeProfesionales.Add("");
+
                     foreach (var serv in servicios)
                     {
-                        profesionales.Add(serv.profesional.nombre);
+                        listaDeProfesionales.Add(serv.profesional.nombre);
 
                     }
-                    if (p.nombre != "") profesionales.Add(p.nombre + " *sin servicio");
-                    List<string> list = new List<string>();
-                    list.Add("Profesionales: \n\n");
-                    foreach(string prof in profesionales)
-                    {
-                        list.Add(prof.ToString());
-                    }
+                    if (p.nombre != "") listaDeProfesionales.Add(p.nombre + " *sin servicio");
+
                     
-                    Formx.archivoPdf(list,"profesionales.pdf");
+
                 }
+                else listaDeProfesionales.Add("No hay Profesionales");
+
+                list = listaDeProfesionales.ToList();
+                Formx.archivoPdf(list, "profesionales.pdf");
 
             }
             else if (ctrlPaciente)
             {
+                HashSet<string> listaDePacientes = new HashSet<string>();
+                List<string> list = new List<string>();
                 if (pacientes.Count > 0)
                 {
-                    HashSet<string> listaDePacientes = new HashSet<string>();
-                    List<string>list=new List<string>();
+
                     listaDePacientes.Add("Lista de Pacientes: ");
                     listaDePacientes.Add("");
-                    
+
                     foreach (var p in pacientes)
                     {
                         listaDePacientes.Add(p.nombre);
-                            
+
 
                     }
-                    list = listaDePacientes.ToList();
                     
-                    Formx.archivoPdf(list, "pacientes.pdf");
-                }
-                
-            }
-            else if (ctrlTurno) 
-            {
-                
-            }
-            else if (ctrlServicio) 
-            {
 
+                }
+                else listaDePacientes.Add("No hay Pacientes");
+                
+                list = listaDePacientes.ToList();
+                Formx.archivoPdf(list, "pacientes.pdf");
+
+            }
+            else if (ctrlTurno) //---------------------------------------------------------------------------<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            {
+                List<string> listaDeTurnos = new List<string>();
+                List<string> list = new List<string>();
+                if (pacientes.Count != 0)
+                {
+                    
+                    int nro = 1;
+                    listaDeTurnos.Add("Lista de turnos: ");
+                    listaDeTurnos.Add("");
+                    foreach (var p in pacientes)
+                    {
+
+                        int j = 0;
+                        if (p.turnos.Count > 0)
+                        {
+                            
+                            listaDeTurnos.Add(p.nombre);
+                            foreach (Turno t in p.turnos)
+                            {
+                                //listBox1.Items.Add(nro);
+                                listaDeTurnos.Add(t.inicio.Day.ToString() + "/" + t.inicio.Month.ToString() + "/" + t.inicio.Year.ToString());
+                                listaDeTurnos.Add(t.inicio.Hour.ToString() + ":00");
+                                
+                                for (j = 0; j < t.servicios.Count; j++)
+                                {
+                                    listaDeTurnos.Add(t.servicios[j].nombreServicio);
+                                }
+
+                            }
+                            listaDeTurnos.Add(" -----------------");
+                            nro++;
+                        }
+                        else listaDeTurnos.Add("No hay Turnos");
+
+                        list=listaDeTurnos.ToList();
+                    }
+
+                    
+                }else listaDeTurnos.Add("No hay Pacientes");
+
+                list = listaDeTurnos.ToList();
+                Formx.archivoPdf(list, "turnos.pdf");
+            }
+            else if (ctrlServicio) //-------------------------------------------------------------------------------
+            {
+                List<string> list = new List<string>();
+                HashSet<string> listaDeServicios = new HashSet<string>();
+                if (servicios.Count != 0)
+                {
+                    
+                    listaDeServicios.Add("Lista de Servicios: ");
+                    listaDeServicios.Add("");
+                    foreach (var p in servicios)
+                    {
+                        listaDeServicios.Add(p.nombreServicio);
+
+                    }
+                    
+
+                }
+                else listaDeServicios.Add("No hay Servicios");
+                
+                list = listaDeServicios.ToList();
+
+                Formx.archivoPdf(list, "servicios.pdf");
             }
         }
     }
 }
+

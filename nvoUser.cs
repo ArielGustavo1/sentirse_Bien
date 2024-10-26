@@ -34,6 +34,9 @@ namespace sentirse_Bien
                 control = true;
                 this.Close();
             }
+            textBox1.Text="";
+            textBox2.Text="";
+            textBox3.Text="";
         }
     }
 }

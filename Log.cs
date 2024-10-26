@@ -12,12 +12,9 @@ namespace sentirse_Bien
 {
     public partial class Log : Form
     {
-        string user = "admin";
-        string pass = "admin";
-        string user1 = "secretaria";
-        string pass1 = "secretaria";
-        string user2 = "";
-        string pass2 = "";
+        string usuario = string.Empty;
+        string password = string.Empty;
+        
         int count = 0;
         public Log()
         {
@@ -28,16 +25,16 @@ namespace sentirse_Bien
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string usuario, pasword;
+            //string usuario, pasword;
             usuario = textBox1.Text;
-            pasword = textBox2.Text;
+            password = textBox2.Text;
             lblUserPass.Text = "";
             if (count < 2)
             {
-                if ((usuario == user && pasword == pass) || (usuario == user1 && pasword == pass1) || (usuario == user2 && pasword == pass2))
+                if ((usuario == "admin" && password == "admin") || (usuario == "secretaria" && password == "secretaria") || (usuario == "" && password == ""))
                 {
-                    usuario = "admin";
-                    Form1 form = new Form1(usuario);
+                    //usuario = "admin";
+                    Form1 form = new Form1(usuario,password);
                     this.Hide();
                     form.ShowDialog();
 
@@ -62,20 +59,22 @@ namespace sentirse_Bien
 
         private void btnNvoUser_Click(object sender, EventArgs e)
         {
-            string usuario=string.Empty;
+            //string usuario=string.Empty;
             NvoUser nvoUser = new NvoUser();
             this.Hide();
             nvoUser.ShowDialog();
             if (nvoUser.control == true) 
             {
                 usuario = nvoUser.user;
+                password = nvoUser.password; 
                 //Application.Exit();
-                Form1 form = new Form1(usuario);
+                Form1 form = new Form1(usuario,password);
                 this.Hide();
                 form.ShowDialog();
                 
             }
             Application.Exit();
+            
         }
     }
 }
