@@ -16,16 +16,17 @@ namespace sentirse_Bien
     public partial class NvoTurno : Form
     {
         public List<Paciente> pacientes;
-        public List<Servicio>servicios;    
+        public List<Servicio> servicios;
         //List<int> turnoHoras;
         public int index1, index2, index3;
-        public string tipoServicio=string.Empty;
-        TimeSpan horas = new TimeSpan(1,0,0);
+        public string tipoServicio = string.Empty;
+        TimeSpan horas = new TimeSpan(1, 0, 0);
         public DateTime dia = DateTime.Now;
         DateTime hoy = DateTime.Now;
         string auxHora = string.Empty;
+        public bool pagado=false;
 
-        public NvoTurno(List<Paciente> p, List<Servicio>s)
+        public NvoTurno(List<Paciente> p, List<Servicio> s)
         {
             InitializeComponent();
 
@@ -50,7 +51,7 @@ namespace sentirse_Bien
             }
             pacientes = p;
             servicios = s;
-            foreach(var serv in servicios)//servicio
+            foreach (var serv in servicios)//servicio
             {
                 comboBox3.Items.Add(serv.nombreServicio);
             }
@@ -59,12 +60,12 @@ namespace sentirse_Bien
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)// dia del turno
         {
-            if(monthCalendar1.SelectionStart >= (hoy-horas))
+            if (monthCalendar1.SelectionStart >= (hoy - horas))
             {
                 dia = monthCalendar1.SelectionStart;
                 label1.Text = dia.ToString("d");
             }
-            
+
 
         }
 
@@ -72,13 +73,13 @@ namespace sentirse_Bien
         {
             label2.Text = comboBox1.SelectedItem.ToString();
             auxHora = label2.Text;
-            if(comboBox1.SelectedIndex<5) index1=(comboBox1.SelectedIndex+8);
-            else index1 = (comboBox1.SelectedIndex+11);
-            
+            if (comboBox1.SelectedIndex < 5) index1 = (comboBox1.SelectedIndex + 8);
+            else index1 = (comboBox1.SelectedIndex + 11);
+
 
         }
 
-        
+
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)// nombre del paciente
         {
             index2 = comboBox2.SelectedIndex;
@@ -88,7 +89,7 @@ namespace sentirse_Bien
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)// nombre del servicio
         {
             index3 = comboBox3.SelectedIndex;
-            label3.Text= comboBox3.Text;
+            label3.Text = comboBox3.Text;
             tipoServicio = label3.Text;
         }
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -96,13 +97,34 @@ namespace sentirse_Bien
             if (comboBox1.SelectedIndex != -1 && comboBox2.SelectedIndex != -1 && comboBox3.SelectedIndex != -1)
             {
 
-                    this.DialogResult = DialogResult.OK;
-                
+                this.DialogResult = DialogResult.OK;
+
             }
             else
             {
                 this.Close();
             }
+        }
+
+        private void btnAbonar_Click(object sender, EventArgs e)
+        {
+
+            if (comboBox2.SelectedIndex >= 0 && comboBox3.SelectedIndex >= 0)
+            {
+                Pago pago = new Pago(servicios[index3]);
+                pago.ShowDialog();
+                if (pago.DialogResult == DialogResult.OK)
+                {
+                    pagado = true;
+                }
+                else MessageBox.Show("No se ha podido ejecutar el cobro");
+            }
+            else MessageBox.Show("Seleccione el servicio y el paciente");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            btnAbonar_Click(sender, e);
         }
     }
 }

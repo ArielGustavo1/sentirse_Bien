@@ -6,10 +6,11 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.Json;
 using iText.Layout.Element;
 using System.Diagnostics.Eventing.Reader;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace sentirse_Bien
 {
-    public partial class Form1 : Form
+    public partial class Form1 : Form /*=====================================pantalla completa y tamaño de letra. Registro de usuario. registro de pagos. pdf. usuario saca turno, poder registrarse nvo user================================================*/
     {
         List<Servicio> servicios;
         //List<Profesional> profesionales;
@@ -41,7 +42,7 @@ namespace sentirse_Bien
             {
                 tipoUser = user;
             }
-            else if(user == "")//para pruebas
+            else if (user == "")//para pruebas
             {
                 tipoUser = "admin";
             }
@@ -56,16 +57,16 @@ namespace sentirse_Bien
                 {
                     n = nvoPaciente.nombre;
                     edad = nvoPaciente.edad;
-                    nuevoPaciente = new Paciente(n,edad);
+                    nuevoPaciente = new Paciente(n, edad);
                     pacientes.Add(nuevoPaciente);
-                    
+
                 }
-                
+
                 nvoPaciente.Close();
-                
+
             }
-            
-            
+
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -153,6 +154,7 @@ namespace sentirse_Bien
                     btnBorrar.Visible = false;
                     panel8.Visible = false;
                     btnPdf.Visible = false;
+                    btnPago.Visible = false;
                     ctrloff();
                     limpiarListBox();
                     label9.Text = "Spa Sentirse bien... \r\nRelájate y revive en nuestro oasis de paz\r\n-masajes tratamientos cuidados-";
@@ -173,6 +175,7 @@ namespace sentirse_Bien
                     btnBorrar.Visible = false;
                     panel8.Visible = false;
                     btnPdf.Visible = false;
+                    btnPago.Visible = false;
                     ctrloff();
                     limpiarListBox();
                     label9.Text = "Spa Sentirse bien... \r\nRelájate y revive en nuestro oasis de paz\r\n-masajes tratamientos cuidados-";
@@ -218,6 +221,7 @@ namespace sentirse_Bien
                     btnBorrar.Visible = true;
                     panel8.Visible = true;
                     btnPdf.Visible = true;
+                    btnPago.Visible = true;
                     label9.Text = "Spa Sentirse bien... \r\nRelájate y revive en nuestro oasis de paz\r\n";
                 }
                 else if (tipoUser == "secretaria")
@@ -236,6 +240,7 @@ namespace sentirse_Bien
                     btnBorrar.Visible = true;
                     panel8.Visible = true;
                     btnPdf.Visible = true;
+                    btnPago.Visible = true;
                     label9.Text = "Spa Sentirse bien... \r\nRelájate y revive en nuestro oasis de paz\r\n";
                 }
                 else if (tipoUser == "guest")
@@ -286,7 +291,42 @@ namespace sentirse_Bien
             }
 
         }
+        private void btnPago_Click(object sender, EventArgs e)
+        {
+            int indice = -1;
+            bool j = false;
+            string nombre = string.Empty;
+            if (ctrlPaciente && pacientes.Count > 0)
+            {
+                
+                indice = listBox1.SelectedIndex;
+                if (indice > 1) nombre = listBox1.SelectedItem.ToString();
+                for (int i = 0; i < pacientes.Count; i++)
+                {
+                    if (pacientes[i].nombre == nombre)
+                    {
+                        j = true;
+                        Pago pago = new Pago(pacientes[i]);
+                        pago.ShowDialog();
+                        if (pago.DialogResult == DialogResult.OK)
+                        {
+                            pacientes[i].saldo = 0;
+                            MessageBox.Show("Pago Ejecutado");
 
+                        }
+                        //else MessageBox.Show("No se ha podido ejecutar el cobro");
+                        break;
+                    }
+                    //else MessageBox.Show("Seleccione paciente");
+
+                }
+                if(!j) MessageBox.Show("Seleccione paciente");
+
+
+            }
+            
+
+        }
         private void btnService_Click(object sender, EventArgs e)//btn 
         {
             ctrloff();
@@ -358,7 +398,7 @@ namespace sentirse_Bien
 
                 }
             }
-            else if(tipoUser == "guest")
+            else if (tipoUser == "guest")
             {
                 if (nuevoPaciente.turnos.Count > 0)
                 {
@@ -371,7 +411,7 @@ namespace sentirse_Bien
                 else listBox1.Items.Add("No hay turnos");
             }
         }
-
+        
 
         private void btnAgregar(object sender, EventArgs e)// agregar nombreProfesionales, paciente y turno
         {
@@ -452,7 +492,7 @@ namespace sentirse_Bien
             }
             if (ctrlTurno)
             {
-                
+
                 DateTime _inicio, _fin;
                 Servicio _s;
                 NvoTurno nvoTurno = new NvoTurno(pacientes, servicios);
@@ -464,6 +504,7 @@ namespace sentirse_Bien
                     _fin = _inicio + _s.duracion;
                     Turno t = new Turno(_inicio, _s);
                     pacientes[nvoTurno.index2].turnos.Add(t);
+                    if(!nvoTurno.pagado)pacientes[nvoTurno.index2].saldo += _s.precio;
                     nvoTurno.Close();
 
                 }
@@ -573,7 +614,7 @@ namespace sentirse_Bien
 
                 btnPaciente(sender, e);
             }
-            if (ctrlServicio && servicios.Count > 0)//================================================================================<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            if (ctrlServicio && servicios.Count > 0)
             {
                 Turno t;
                 indice = listBox1.SelectedIndex;
@@ -704,7 +745,7 @@ namespace sentirse_Bien
 
         private void btnPdf_Click(object sender, EventArgs e)
         {
-            
+
             if (ctrlProfesional)
             {
                 HashSet<string> listaDeProfesionales = new HashSet<string>();
@@ -722,7 +763,7 @@ namespace sentirse_Bien
                     }
                     if (p.nombre != "") listaDeProfesionales.Add(p.nombre + " *sin servicio");
 
-                    
+
 
                 }
                 else listaDeProfesionales.Add("No hay Profesionales");
@@ -747,11 +788,11 @@ namespace sentirse_Bien
 
 
                     }
-                    
+
 
                 }
                 else listaDePacientes.Add("No hay Pacientes");
-                
+
                 list = listaDePacientes.ToList();
                 Formx.archivoPdf(list, "pacientes.pdf");
 
@@ -762,7 +803,7 @@ namespace sentirse_Bien
                 List<string> list = new List<string>();
                 if (pacientes.Count != 0)
                 {
-                    
+
                     int nro = 1;
                     listaDeTurnos.Add("Lista de turnos: ");
                     listaDeTurnos.Add("");
@@ -772,14 +813,14 @@ namespace sentirse_Bien
                         int j = 0;
                         if (p.turnos.Count > 0)
                         {
-                            
+
                             listaDeTurnos.Add(p.nombre);
                             foreach (Turno t in p.turnos)
                             {
                                 //listBox1.Items.Add(nro);
                                 listaDeTurnos.Add(t.inicio.Day.ToString() + "/" + t.inicio.Month.ToString() + "/" + t.inicio.Year.ToString());
                                 listaDeTurnos.Add(t.inicio.Hour.ToString() + ":00");
-                                
+
                                 for (j = 0; j < t.servicios.Count; j++)
                                 {
                                     listaDeTurnos.Add(t.servicios[j].nombreServicio);
@@ -791,11 +832,12 @@ namespace sentirse_Bien
                         }
                         else listaDeTurnos.Add("No hay Turnos");
 
-                        list=listaDeTurnos.ToList();
+                        list = listaDeTurnos.ToList();
                     }
 
-                    
-                }else listaDeTurnos.Add("No hay Pacientes");
+
+                }
+                else listaDeTurnos.Add("No hay Pacientes");
 
                 list = listaDeTurnos.ToList();
                 Formx.archivoPdf(list, "turnos.pdf");
@@ -806,7 +848,7 @@ namespace sentirse_Bien
                 HashSet<string> listaDeServicios = new HashSet<string>();
                 if (servicios.Count != 0)
                 {
-                    
+
                     listaDeServicios.Add("Lista de Servicios: ");
                     listaDeServicios.Add("");
                     foreach (var p in servicios)
@@ -814,16 +856,18 @@ namespace sentirse_Bien
                         listaDeServicios.Add(p.nombreServicio);
 
                     }
-                    
+
 
                 }
                 else listaDeServicios.Add("No hay Servicios");
-                
+
                 list = listaDeServicios.ToList();
 
                 Formx.archivoPdf(list, "servicios.pdf");
             }
         }
+
+        
     }
 }
 

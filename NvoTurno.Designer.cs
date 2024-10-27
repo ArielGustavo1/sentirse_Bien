@@ -37,6 +37,9 @@
             comboBox3 = new ComboBox();
             label3 = new Label();
             label4 = new Label();
+            btnAbonar = new Button();
+            button1 = new Button();
+            label5 = new Label();
             SuspendLayout();
             // 
             // monthCalendar1
@@ -48,7 +51,7 @@
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(655, 520);
+            btnAceptar.Location = new Point(655, 551);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.Size = new Size(150, 46);
             btnAceptar.TabIndex = 2;
@@ -119,11 +122,43 @@
             label4.TabIndex = 8;
             label4.Text = "Paciente";
             // 
+            // btnAbonar
+            // 
+            btnAbonar.Location = new Point(518, 364);
+            btnAbonar.Name = "btnAbonar";
+            btnAbonar.Size = new Size(287, 46);
+            btnAbonar.TabIndex = 10;
+            btnAbonar.Text = "Abonar con Credito";
+            btnAbonar.UseVisualStyleBackColor = true;
+            btnAbonar.Click += btnAbonar_Click;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(518, 435);
+            button1.Name = "button1";
+            button1.Size = new Size(287, 46);
+            button1.TabIndex = 11;
+            button1.Text = "Abonar con Débito";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(12, 350);
+            label5.Name = "label5";
+            label5.Size = new Size(401, 32);
+            label5.TabIndex = 12;
+            label5.Text = "Para abonar en el SPA pulsar aceptar";
+            // 
             // NvoTurno
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(856, 619);
+            Controls.Add(label5);
+            Controls.Add(button1);
+            Controls.Add(btnAbonar);
             Controls.Add(label3);
             Controls.Add(label4);
             Controls.Add(comboBox3);
@@ -149,5 +184,8 @@
         private ComboBox comboBox3;
         private Label label3;
         private Label label4;
+        private Button btnAbonar;
+        private Button button1;
+        private Label label5;
     }
 }

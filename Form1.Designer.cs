@@ -30,6 +30,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btnPago = new Button();
             button6 = new Button();
             btnPdf = new Button();
             panel8 = new Panel();
@@ -75,6 +76,7 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(btnPago);
             panel1.Controls.Add(button6);
             panel1.Controls.Add(btnPdf);
             panel1.Controls.Add(panel8);
@@ -92,6 +94,18 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(425, 1570);
             panel1.TabIndex = 0;
+            // 
+            // btnPago
+            // 
+            btnPago.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnPago.Location = new Point(3, 921);
+            btnPago.Name = "btnPago";
+            btnPago.Size = new Size(419, 72);
+            btnPago.TabIndex = 16;
+            btnPago.Text = "Pago/Saldo";
+            btnPago.UseVisualStyleBackColor = true;
+            btnPago.Visible = false;
+            btnPago.Click += btnPago_Click;
             // 
             // button6
             // 
@@ -111,7 +125,7 @@
             // btnPdf
             // 
             btnPdf.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnPdf.Location = new Point(0, 980);
+            btnPdf.Location = new Point(3, 1024);
             btnPdf.Name = "btnPdf";
             btnPdf.Size = new Size(419, 72);
             btnPdf.TabIndex = 15;
@@ -133,7 +147,7 @@
             // btnBorrar
             // 
             btnBorrar.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnBorrar.Location = new Point(0, 885);
+            btnBorrar.Location = new Point(3, 823);
             btnBorrar.Name = "btnBorrar";
             btnBorrar.Size = new Size(422, 66);
             btnBorrar.TabIndex = 13;
@@ -145,7 +159,7 @@
             // btnService
             // 
             btnService.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnService.Location = new Point(0, 411);
+            btnService.Location = new Point(3, 349);
             btnService.Name = "btnService";
             btnService.Size = new Size(419, 72);
             btnService.TabIndex = 12;
@@ -157,7 +171,7 @@
             // button7
             // 
             button7.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            button7.Location = new Point(0, 690);
+            button7.Location = new Point(3, 628);
             button7.Name = "button7";
             button7.Size = new Size(422, 66);
             button7.TabIndex = 11;
@@ -169,7 +183,7 @@
             // button4
             // 
             button4.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            button4.Location = new Point(0, 788);
+            button4.Location = new Point(3, 726);
             button4.Name = "button4";
             button4.Size = new Size(422, 66);
             button4.TabIndex = 5;
@@ -181,7 +195,7 @@
             // button3
             // 
             button3.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            button3.Location = new Point(3, 597);
+            button3.Location = new Point(6, 535);
             button3.Name = "button3";
             button3.Size = new Size(419, 72);
             button3.TabIndex = 4;
@@ -193,7 +207,7 @@
             // button2
             // 
             button2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            button2.Location = new Point(0, 505);
+            button2.Location = new Point(3, 443);
             button2.Name = "button2";
             button2.Size = new Size(419, 72);
             button2.TabIndex = 3;
@@ -205,7 +219,7 @@
             // button1
             // 
             button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            button1.Location = new Point(0, 317);
+            button1.Location = new Point(3, 255);
             button1.Name = "button1";
             button1.Size = new Size(419, 72);
             button1.TabIndex = 2;
@@ -220,7 +234,7 @@
             btnOpciones.BackColor = Color.MediumSeaGreen;
             btnOpciones.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnOpciones.Image = Properties.Resources.logo_chico;
-            btnOpciones.Location = new Point(38, 43);
+            btnOpciones.Location = new Point(38, 24);
             btnOpciones.Name = "btnOpciones";
             btnOpciones.Size = new Size(349, 200);
             btnOpciones.TabIndex = 1;
@@ -538,5 +552,6 @@
         private Panel panel8;
         private Panel panel10;
         private Button btnPdf;
+        private Button btnPago;
     }
 }
