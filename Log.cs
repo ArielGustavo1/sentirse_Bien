@@ -31,7 +31,7 @@ namespace sentirse_Bien
             lblUserPass.Text = "";
             if (count < 2)
             {
-                if ((usuario == "admin" && password == "admin") || (usuario == "secretaria" && password == "secretaria") || (usuario == "" && password == ""))
+                if ((usuario == "admin" && password == "admin") || (usuario == "secretaria" && password == "secretaria") || (usuario == "" && password == ""))//sacar este ultimo ""
                 {
                     //usuario = "admin";
                     Form1 form = new Form1(usuario,password);

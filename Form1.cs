@@ -17,6 +17,7 @@ namespace sentirse_Bien
         Profesional p = new Profesional("");
         string auxNombre = string.Empty;
         string tipoUser = string.Empty;
+        Paciente nuevoPaciente;
 
         bool ctrlAgregar = false, ctrlPaciente = false, ctrlProfesional = false, ctrlTurno = false, ctrlServicio = false, ctrlBorrar = false;
 
@@ -28,7 +29,10 @@ namespace sentirse_Bien
             //this.WindowState = FormWindowState.Maximized;
             pacientes = new List<Paciente>();
             servicios = new List<Servicio>();
+            nuevoPaciente = new Paciente();
             tableLayoutPanel1.Visible = false;
+            pacientes = Formx.LeerListaP(@"D:\TUP\Cursado\Metodologia de sistemas\Clonado\bin\Debug\net8.0-windows\listaPacientes.json");
+            servicios = Formx.LeerListaS(@"D:\TUP\Cursado\Metodologia de sistemas\Clonado\bin\Debug\net8.0-windows\listaServicios.json");
             if (user == "admin")
             {
                 tipoUser = user;
@@ -43,11 +47,25 @@ namespace sentirse_Bien
             }
             else
             {
-
+                tipoUser = "guest";
+                string n;
+                int edad;
+                NvoPaciente nvoPaciente = new NvoPaciente();
+                nvoPaciente.ShowDialog();
+                if (nvoPaciente.DialogResult == DialogResult.OK)
+                {
+                    n = nvoPaciente.nombre;
+                    edad = nvoPaciente.edad;
+                    nuevoPaciente = new Paciente(n,edad);
+                    pacientes.Add(nuevoPaciente);
+                    
+                }
+                
+                nvoPaciente.Close();
+                
             }
             
-            pacientes = Formx.LeerListaP(@"D:\TUP\Cursado\Metodologia de sistemas\Clonado\bin\Debug\net8.0-windows\listaPacientes.json");
-            servicios = Formx.LeerListaS(@"D:\TUP\Cursado\Metodologia de sistemas\Clonado\bin\Debug\net8.0-windows\listaServicios.json");
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -159,6 +177,26 @@ namespace sentirse_Bien
                     limpiarListBox();
                     label9.Text = "Spa Sentirse bien... \r\nRelájate y revive en nuestro oasis de paz\r\n-masajes tratamientos cuidados-";
                 }
+                else if (tipoUser == "guest")
+                {
+                    tableLayoutPanel1.Visible = false;
+                    //button1.Visible = false;//profesional
+                    //button2.Visible = false;
+                    button3.Visible = false;
+                    button4.Visible = false;
+                    //btnService.Visible = false;//servicio
+                    button6.Visible = true;
+                    //button7.Visible = false;
+                    listBox1.Visible = false;
+                    listBox2.Visible = false;
+                    listBox3.Visible = false;
+                    //btnBorrar.Visible = false;
+                    panel8.Visible = false;
+                    //btnPdf.Visible = false;
+                    ctrloff();
+                    limpiarListBox();
+                    label9.Text = "Spa Sentirse bien... \r\nRelájate y revive en nuestro oasis de paz\r\n-masajes tratamientos cuidados-";
+                }
 
             }
 
@@ -200,7 +238,24 @@ namespace sentirse_Bien
                     btnPdf.Visible = true;
                     label9.Text = "Spa Sentirse bien... \r\nRelájate y revive en nuestro oasis de paz\r\n";
                 }
-
+                else if (tipoUser == "guest")
+                {
+                    tableLayoutPanel1.Visible = true;
+                    //button1.Visible = true;
+                    //button2.Visible = true;
+                    button3.Visible = true;
+                    button4.Visible = true;
+                    //btnService.Visible = true;
+                    button6.Visible = false;
+                    //button7.Visible = true;
+                    listBox1.Visible = true;
+                    listBox2.Visible = true;
+                    listBox3.Visible = true;
+                    //btnBorrar.Visible = true;
+                    panel8.Visible = true;
+                    //btnPdf.Visible = true;
+                    label9.Text = "Spa Sentirse bien... \r\nRelájate y revive en nuestro oasis de paz\r\n";
+                }
             }
 
 
@@ -276,7 +331,7 @@ namespace sentirse_Bien
             limpiarListBox();
             listBox1.Items.Add("Lista de Turnos: ");
             listBox1.Items.Add("");
-            if (pacientes.Count != 0)
+            if (tipoUser != "guest" && pacientes.Count != 0)
             {
 
                 foreach (var p in pacientes)
@@ -302,6 +357,18 @@ namespace sentirse_Bien
                     }
 
                 }
+            }
+            else if(tipoUser == "guest")
+            {
+                if (nuevoPaciente.turnos.Count > 0)
+                {
+                    listBox1.Items.Add(nuevoPaciente.nombre);
+                    foreach (var p in nuevoPaciente.turnos)
+                    {
+                        listBox1.Items.Add(p.inicio.ToString());
+                    }
+                }
+                else listBox1.Items.Add("No hay turnos");
             }
         }
 
@@ -385,6 +452,7 @@ namespace sentirse_Bien
             }
             if (ctrlTurno)
             {
+                
                 DateTime _inicio, _fin;
                 Servicio _s;
                 NvoTurno nvoTurno = new NvoTurno(pacientes, servicios);

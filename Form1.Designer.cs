@@ -99,7 +99,7 @@
             button6.BackColor = Color.MediumVioletRed;
             button6.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             button6.Image = Properties.Resources.logo_chico;
-            button6.Location = new Point(38, 1150);
+            button6.Location = new Point(38, 1157);
             button6.Name = "button6";
             button6.Size = new Size(349, 200);
             button6.TabIndex = 10;
@@ -111,7 +111,7 @@
             // btnPdf
             // 
             btnPdf.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnPdf.Location = new Point(3, 1027);
+            btnPdf.Location = new Point(0, 980);
             btnPdf.Name = "btnPdf";
             btnPdf.Size = new Size(419, 72);
             btnPdf.TabIndex = 15;
@@ -124,16 +124,16 @@
             // 
             panel8.BackgroundImage = Properties.Resources.logo_chico;
             panel8.Dock = DockStyle.Bottom;
-            panel8.Location = new Point(0, 1356);
+            panel8.Location = new Point(0, 1363);
             panel8.Name = "panel8";
-            panel8.Size = new Size(425, 214);
+            panel8.Size = new Size(425, 207);
             panel8.TabIndex = 14;
             panel8.Visible = false;
             // 
             // btnBorrar
             // 
             btnBorrar.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnBorrar.Location = new Point(3, 932);
+            btnBorrar.Location = new Point(0, 885);
             btnBorrar.Name = "btnBorrar";
             btnBorrar.Size = new Size(422, 66);
             btnBorrar.TabIndex = 13;
@@ -145,7 +145,7 @@
             // btnService
             // 
             btnService.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnService.Location = new Point(3, 458);
+            btnService.Location = new Point(0, 411);
             btnService.Name = "btnService";
             btnService.Size = new Size(419, 72);
             btnService.TabIndex = 12;
@@ -157,7 +157,7 @@
             // button7
             // 
             button7.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            button7.Location = new Point(3, 737);
+            button7.Location = new Point(0, 690);
             button7.Name = "button7";
             button7.Size = new Size(422, 66);
             button7.TabIndex = 11;
@@ -169,7 +169,7 @@
             // button4
             // 
             button4.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            button4.Location = new Point(3, 835);
+            button4.Location = new Point(0, 788);
             button4.Name = "button4";
             button4.Size = new Size(422, 66);
             button4.TabIndex = 5;
@@ -181,7 +181,7 @@
             // button3
             // 
             button3.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            button3.Location = new Point(6, 644);
+            button3.Location = new Point(3, 597);
             button3.Name = "button3";
             button3.Size = new Size(419, 72);
             button3.TabIndex = 4;
@@ -193,7 +193,7 @@
             // button2
             // 
             button2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            button2.Location = new Point(3, 552);
+            button2.Location = new Point(0, 505);
             button2.Name = "button2";
             button2.Size = new Size(419, 72);
             button2.TabIndex = 3;
@@ -205,7 +205,7 @@
             // button1
             // 
             button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            button1.Location = new Point(3, 364);
+            button1.Location = new Point(0, 317);
             button1.Name = "button1";
             button1.Size = new Size(419, 72);
             button1.TabIndex = 2;
@@ -298,9 +298,9 @@
             // 
             panel9.BackgroundImage = Properties.Resources.logo_chico;
             panel9.Dock = DockStyle.Bottom;
-            panel9.Location = new Point(524, 1356);
+            panel9.Location = new Point(524, 1363);
             panel9.Name = "panel9";
-            panel9.Size = new Size(2545, 214);
+            panel9.Size = new Size(2545, 207);
             panel9.TabIndex = 12;
             // 
             // panel7
