@@ -10,7 +10,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace sentirse_Bien
 {
-    public partial class Form1 : Form /*=====================================pantalla completa y tamaño de letra. Registro de usuario. registro de pagos. pdf. usuario saca turno, poder registrarse nvo user================================================*/
+    public partial class Form1 : Form /*===========pantalla completa y tamaño de letra. Registro de usuario. registro de pagos. pdf. usuario saca turno, poder registrarse nvo user===============*/
     {
         List<Servicio> servicios;
         //List<Profesional> profesionales;

@@ -42,7 +42,7 @@
             // button1
             // 
             button1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            button1.Location = new Point(216, 336);
+            button1.Location = new Point(216, 375);
             button1.Name = "button1";
             button1.Size = new Size(1306, 58);
             button1.TabIndex = 0;
@@ -100,7 +100,7 @@
             // btnNvoUser
             // 
             btnNvoUser.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnNvoUser.Location = new Point(216, 272);
+            btnNvoUser.Location = new Point(216, 301);
             btnNvoUser.Name = "btnNvoUser";
             btnNvoUser.Size = new Size(1306, 58);
             btnNvoUser.TabIndex = 6;
