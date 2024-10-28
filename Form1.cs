@@ -42,9 +42,9 @@ namespace sentirse_Bien
             {
                 tipoUser = user;
             }
-            else if (user == "")//para pruebas
+            else if (user == "invitado")
             {
-                tipoUser = "admin";
+                tipoUser = "guest";
             }
             else
             {
@@ -327,7 +327,7 @@ namespace sentirse_Bien
             
 
         }
-        private void btnService_Click(object sender, EventArgs e)//btn 
+        private void btnService_Click(object sender, EventArgs e)//btnServicio 
         {
             ctrloff();
             ctrlServicio = true;
@@ -412,7 +412,6 @@ namespace sentirse_Bien
             }
         }
         
-
         private void btnAgregar(object sender, EventArgs e)// agregar nombreProfesionales, paciente y turno
         {
             if (ctrlProfesional)
@@ -573,7 +572,6 @@ namespace sentirse_Bien
                 }
             }
         }
-
 
         public void btnBorrar_Click(object sender, EventArgs e)
         {

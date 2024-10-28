@@ -84,7 +84,17 @@ namespace sentirse_Bien
             return JsonSerializer.Deserialize<List<Servicio>>(jsonString);
         }
 
-
+        public static List<UsuarioContrasena> LeerListaUserPass(string archivo)
+        {
+            string jsonString = File.ReadAllText(archivo);
+            return JsonSerializer.Deserialize<List<UsuarioContrasena>>(jsonString);
+        }
+        public static void escribirListaUserPass(List<UsuarioContrasena> userPass)
+        {
+            string archivo = "userPass.json";
+            string jsonString = JsonSerializer.Serialize(userPass);
+            File.WriteAllText(archivo, jsonString);
+        }
 
 
         public static void archivoPdf(List<string> datos, string nombreArchivo)

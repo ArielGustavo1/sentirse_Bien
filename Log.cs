@@ -14,13 +14,35 @@ namespace sentirse_Bien
     {
         string usuario = string.Empty;
         string password = string.Empty;
-        
+        List<UsuarioContrasena> userPass;
+        int control = -1;
         int count = 0;
         public Log()
         {
             InitializeComponent();
-            //this.FormBorderStyle = FormBorderStyle.None;
-            //this.WindowState = FormWindowState.Maximized;
+            userPass = new List<UsuarioContrasena>();
+            //UsuarioContrasena us0 = new UsuarioContrasena();
+            //us0.usuario = "secretaria";
+            //us0.contrasena = "secretaria";
+            //userPass.Add(us0);
+
+            //UsuarioContrasena us1 = new UsuarioContrasena();
+            //us1.usuario = "admin";
+            //us1.contrasena = "admin";
+            //userPass.Add(us1);
+
+            //UsuarioContrasena us2 = new UsuarioContrasena();
+            //us2.usuario = "invitado";
+            //us2.contrasena = "invitado";
+            //userPass.Add(us2);
+
+            //Formx.escribirListaUserPass(userPass);
+            userPass = Formx.LeerListaUserPass(@"D:\TUP\Cursado\Metodologia de sistemas\Clonado\bin\Debug\net8.0-windows\userPass.json");
+            //MessageBox.Show(userPass[0].usuario);
+            //MessageBox.Show(userPass[1].usuario);
+            //MessageBox.Show(userPass[2].usuario);
+            //MessageBox.Show(userPass[3].usuario);
+            //MessageBox.Show(userPass[4].usuario);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -31,9 +53,29 @@ namespace sentirse_Bien
             lblUserPass.Text = "";
             if (count < 2)
             {
-                if ((usuario == "admin" && password == "admin") || (usuario == "secretaria" && password == "secretaria") || (usuario == "" && password == ""))//sacar este ultimo ""
+                foreach(var up in userPass)
+                {
+                    if (up.usuario == usuario && usuario == "admin" && password == "admin")
+                    {
+                        control = 0;
+                    }
+                    else if (up.usuario == usuario && usuario == "secretaria" && password == "secretaria")
+                    {
+                        control = 1;
+                    }
+                    else if (up.usuario == usuario && up.contrasena == password)
+                    {
+                        control = 2;
+                        usuario = "invitado";
+                    }
+                    
+                    
+
+                }
+                if (control>-1 && control <3)//sacar este ultimo ""
                 {
                     //usuario = "admin";
+                    
                     Form1 form = new Form1(usuario,password);
                     this.Hide();
                     form.ShowDialog();
@@ -48,7 +90,7 @@ namespace sentirse_Bien
                     textBox1.Text = "";
                     textBox2.Text = "";
                     lblUserPass.Text = "Usuario o Contraseña incorrectos";
-
+                    control = -1;
                 }
 
             }
@@ -66,7 +108,10 @@ namespace sentirse_Bien
             if (nvoUser.control == true) 
             {
                 usuario = nvoUser.user;
-                password = nvoUser.password; 
+                password = nvoUser.password;
+                UsuarioContrasena _userPass = new UsuarioContrasena(usuario, password);
+                userPass.Add(_userPass);
+                Formx.escribirListaUserPass(userPass);
                 //Application.Exit();
                 Form1 form = new Form1(usuario,password);
                 this.Hide();
